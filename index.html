@@ -19,7 +19,7 @@
     <nav class="nav" id="nav">
       <a href="#shop">SHOP</a><a href="#collections">COLLECTIONS</a><a href="#about">ABOUT</a>
     </nav>
-    <a class="header-cta" href="#shop">DISCOVER THE EDIT <span>↗</span></a>
+    <a class="header-cta" href="https://t.me/FORME_CASE" target="_blank" rel="noopener">TELEGRAM <span>↗</span></a>
   </header>
 
   <main id="top">
@@ -77,7 +77,7 @@
     <section class="shop-section section" id="shop">
       <div class="section-heading shop-heading">
         <div><p class="eyebrow">THE FIRST COLLECTION</p><h2>Find your<br><em>form.</em></h2></div>
-        <p class="section-aside">Explore the selected designs. Choose your iPhone model when sending an enquiry — compatibility is confirmed individually before an order is accepted.</p>
+        <p class="section-aside">Выбери дизайн и модель iPhone. Цена каждого чехла — 1 290 ₽. Доставка рассчитывается отдельно.</p>
       </div>
       <div class="filters" role="group" aria-label="Фильтр коллекций">
         <button class="filter active" data-filter="all">ALL</button>
@@ -192,15 +192,15 @@
     <section class="newsletter">
       <p class="eyebrow">STAY IN THE FORMÉ WORLD</p>
       <h2>Something worth<br><em>looking at.</em></h2>
-      <p>Follow the first collection and get in touch to enquire about a design.</p>
-      <a href="#shop" class="button button-light">EXPLORE THE EDIT ↗</a>
+      <p>Новые модели, детали коллекции и связь с FORMÉ — в нашем Telegram.</p>
+      <a href="https://t.me/FORME_CASE" target="_blank" rel="noopener" class="button button-light">ПЕРЕЙТИ В TELEGRAM ↗</a>
     </section>
   </main>
 
   <footer class="footer">
     <a class="wordmark footer-mark" href="#top">FORMÉ</a>
     <span>A FORM OF EXPRESSION</span>
-    <div class="footer-links"><a href="#shop">SHOP</a><a href="#collections">COLLECTIONS</a><a href="#about">ABOUT</a></div>
+    <div class="footer-links"><a href="#shop">SHOP</a><a href="#collections">COLLECTIONS</a><a href="#about">ABOUT</a><a href="https://t.me/FORME_CASE" target="_blank" rel="noopener">TELEGRAM ↗</a></div>
     <small>© 2026 FORMÉ. Independent accessories concept.</small>
   </footer>
 
@@ -212,7 +212,8 @@
       <div class="modal-info">
         <p class="eyebrow" id="modalCategory">FORMÉ FIRST EDITION</p>
         <h2 id="modalTitle">Product name</h2>
-        <p class="modal-description">A selected design from the first FORMÉ edit. Product details and compatibility are confirmed individually before an order is accepted.</p>
+        <p class="modal-description">Выбранный дизайн из первой коллекции FORMÉ.</p>
+        <div class="order-price"><span>СТОИМОСТЬ ЧЕХЛА</span><strong>1 290 ₽</strong><small>Доставка оплачивается отдельно</small></div>
         <label for="customerName">ИМЯ</label>
         <input id="customerName" type="text" placeholder="Как к вам обращаться">
         <label for="phoneModel">МОДЕЛЬ IPHONE</label>
@@ -223,12 +224,19 @@
           <optgroup label="iPhone 16 series"><option>iPhone 16</option><option>iPhone 16 Plus</option><option>iPhone 16 Pro</option><option>iPhone 16 Pro Max</option><option>iPhone 16e</option></optgroup>
           <optgroup label="iPhone 15 series"><option>iPhone 15</option><option>iPhone 15 Plus</option><option>iPhone 15 Pro</option><option>iPhone 15 Pro Max</option></optgroup>
         </select>
-        <label for="customerContact">ТЕЛЕФОН ИЛИ TELEGRAM</label>
-        <input id="customerContact" type="text" placeholder="@username или +7...">
+        <label for="customerContact">ТЕЛЕФОН ДЛЯ СВЯЗИ</label>
+        <input id="customerContact" type="tel" autocomplete="tel" placeholder="+7 999 000-00-00" required>
+        <label for="deliveryCity">ГОРОД</label>
+        <input id="deliveryCity" type="text" autocomplete="address-level2" placeholder="Город доставки" required>
+        <label for="deliveryAddress">АДРЕС ДОСТАВКИ</label>
+        <input id="deliveryAddress" type="text" autocomplete="street-address" placeholder="Улица, дом, квартира / пункт выдачи" required>
+        <label for="deliveryPostcode">ПОЧТОВЫЙ ИНДЕКС (ЕСЛИ ЗНАЕШЬ)</label>
+        <input id="deliveryPostcode" type="text" autocomplete="postal-code" placeholder="Индекс">
         <label for="customerComment">КОММЕНТАРИЙ (НЕОБЯЗАТЕЛЬНО)</label>
-        <input id="customerComment" type="text" placeholder="Цвет, пожелания, вопросы">
-        <button class="button button-dark modal-submit" id="copyEnquiry">ОТПРАВИТЬ ЗАЯВКУ <span>↗</span></button>
-        <p class="form-note" id="formNote">Заявка попадёт в таблицу FORMÉ. Оплата и подтверждение заказа — после проверки наличия.</p>
+        <input id="customerComment" type="text" placeholder="Пожелания к заказу">
+        <label class="consent-row"><input id="personalDataConsent" type="checkbox" required> Согласен(на) на обработку данных для оформления заказа</label>
+        <button class="button button-dark modal-submit" id="copyEnquiry">ОФОРМИТЬ ЗАКАЗ · 1 290 ₽ <span>↗</span></button>
+        <p class="form-note" id="formNote">Цена чехла — 1 290 ₽. Стоимость и способ доставки уточняются по адресу до подтверждения заказа.</p>
       </div>
     </div>
   </div>
