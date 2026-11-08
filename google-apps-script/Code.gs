@@ -1,21 +1,18 @@
 const SPREADSHEET_ID = "1Qk5Svjxv-1O2FC2e24zcxnXebKVme0KN6P0DRTgbDmo";
-const SHEET_NAME = "Заявки";
 function doPost(e) {
-  try {
-    const data = JSON.parse(e.postData.contents || "{}");
-    const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
-    sheet.appendRow([
-      new Date(), data.orderId || "", data.product || "", data.collection || "",
-      data.phoneModel || "", data.customerName || "", data.contact || "",
-      data.city || "", data.address || "", data.postcode || "",
-      Number(data.price || 1290), data.comment || "", "Новый заказ",
-      data.source || "FORME website"
-    ]);
-    return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON);
-  } catch (err) {
-    return ContentService.createTextOutput(JSON.stringify({ok:false,error:String(err)})).setMimeType(ContentService.MimeType.JSON);
-  }
+ const lock = LockService.getScriptLock();
+ try {
+  const d = JSON.parse(e.postData.contents);
+  if (!d.orderId || !d.product || !d.customerName || !d.contact || !d.phoneModel || !d.city || !d.address || d.consent !== true) throw Error("Required fields");
+  const clean = v => { const s = String(v || "").slice(0,1000); return /^[=+@-]/.test(s) ? "'" + s : s; };
+  lock.waitLock(20000);
+  const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName("Заявки");
+  const n = sheet.getLastRow();
+  const exists = n > 1 && sheet.getRange(2,2,n-1,1).createTextFinder(String(d.orderId)).matchEntireCell(true).findNext();
+  if (!exists) sheet.appendRow([new Date(),clean(d.orderId),clean(d.product),clean(d.collection),clean(d.phoneModel),clean(d.customerName),clean(d.contact),clean(d.city),clean(d.address),clean(d.postcode),1290,clean(d.comment),"Новая заявка","Сайт FORMÉ",clean(d.contactChannel),"Да"]);
+  return json({ok:true,orderId:d.orderId});
+ } catch(err) { return json({ok:false,error:"Не удалось сохранить заявку"}); }
+ finally { if(lock.hasLock()) lock.releaseLock(); }
 }
-function doGet() {
-  return ContentService.createTextOutput("FORMÉ order endpoint is live.");
-}
+function json(d) { return ContentService.createTextOutput(JSON.stringify(d)).setMimeType(ContentService.MimeType.JSON); }
+function doGet() { return json({ok:true,service:"FORMÉ orders"}); }
