@@ -139,3 +139,7 @@ img{max-width:100%}
  .footer{min-width:0}
  .footer-links{gap:15px 18px}
 }
+
+
+.product-price{font-family:var(--serif);font-size:18px;color:var(--burgundy);margin:9px 0 0}
+@media(max-width:640px){.product-price{font-size:17px;margin-top:7px}}
