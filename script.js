@@ -1,94 +1,30 @@
-const filters = document.querySelectorAll(".filter");
-const cards = document.querySelectorAll(".product-card");
-filters.forEach(button => button.addEventListener("click", () => {
-  filters.forEach(item => item.classList.remove("active"));
-  button.classList.add("active");
-  const filter = button.dataset.filter;
-  cards.forEach(card => card.hidden = filter !== "all" && card.dataset.category !== filter);
-}));
-document.querySelectorAll("[data-filter-link]").forEach(link => link.addEventListener("click", () => {
-  const target = [...filters].find(item => item.dataset.filter === link.dataset.filterLink);
-  if (target) target.click();
-}));
-const modal = document.getElementById("productModal");
-const modalImage = document.getElementById("modalImage");
-const modalTitle = document.getElementById("modalTitle");
-const modalCategory = document.getElementById("modalCategory");
-function openProduct(button) {
-  const card = button.closest(".product-card");
-  const image = card.querySelector("img");
-  modalImage.src = image.src;
-  modalImage.alt = image.alt;
-  modalTitle.textContent = card.querySelector("h3").textContent;
-  modalCategory.textContent = card.querySelector(".product-category").textContent;
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
-  modal.querySelector(".modal-info").scrollTop = 0;
+'use strict';
+const labels={azul:'AZUL', 'evil-eye':'EVIL EYE',ocean:'OCEAN',racetrack:'RACETRACK',leopard:'LEOPARD'};
+const descriptions={azul:'Синий рисунок. Выразительная деталь для повседневного образа.','evil-eye':'Графичный символ и синие акценты.',ocean:'Морское настроение в синей палитре.',racetrack:'Дизайн с настроением автоспорта.',leopard:'Леопардовый принт как личный акцент.'};
+const dialog=document.getElementById('productDialog');
+const form=document.getElementById('orderForm');
+const review=document.getElementById('orderReview');
+const grid=document.getElementById('productGrid');
+let products=[],selected=null,opener=null,message='';
+const modelSelect=document.getElementById('phoneModel');
+function cardFor(p){
+ const card=document.createElement('article');card.className='product-card';card.dataset.category=p.category;
+ const button=document.createElement('button');button.className='product-image';button.type='button';button.setAttribute('aria-label',`Открыть ${p.name}`);
+ const img=document.createElement('img');img.src=p.image;img.alt=p.reference?`Пример коллекции ${labels[p.category]} — точное фото ${p.name} уточняется`:`Чехол ${p.name}`;img.loading='lazy';img.width=600;img.height=750;button.append(img);
+ if(p.reference){const badge=document.createElement('span');badge.className='reference';badge.textContent='Фото уточняется';button.append(badge)}
+ const arrow=document.createElement('span');arrow.className='view';arrow.textContent='→';arrow.setAttribute('aria-hidden','true');button.append(arrow);button.addEventListener('click',()=>openProduct(p,button));
+ const category=document.createElement('p');category.className='product-category';category.textContent=labels[p.category];
+ const title=document.createElement('h3');const titleButton=document.createElement('button');titleButton.textContent=p.name;titleButton.addEventListener('click',()=>openProduct(p,titleButton));title.append(titleButton);
+ const row=document.createElement('div');row.className='price-row';const price=document.createElement('span');price.textContent='1 290 ₽';const choose=document.createElement('button');choose.textContent='Выбрать →';choose.setAttribute('aria-label',`Выбрать ${p.name}`);choose.addEventListener('click',()=>openProduct(p,choose));row.append(price,choose);card.append(button,category,title,row);return card;
 }
-document.querySelectorAll("[data-open]").forEach(button => button.addEventListener("click", () => openProduct(button)));
-function closeModal() {
-  modal.classList.remove("open");
-  modal.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
-}
-document.querySelectorAll("[data-close]").forEach(button => button.addEventListener("click", closeModal));
-document.addEventListener("keydown", event => { if (event.key === "Escape") closeModal(); });
-const GOOGLE_SCRIPT_URL = "PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
-const PRICE_RUB = 1290;
-document.getElementById("copyEnquiry").addEventListener("click", async () => {
-  const model = document.getElementById("phoneModel").value;
-  const name = document.getElementById("customerName").value.trim();
-  const contact = document.getElementById("customerContact").value.trim();
-  const city = document.getElementById("deliveryCity").value.trim();
-  const address = document.getElementById("deliveryAddress").value.trim();
-  const postcode = document.getElementById("deliveryPostcode").value.trim();
-  const comment = document.getElementById("customerComment").value.trim();
-  const consent = document.getElementById("personalDataConsent").checked;
-  const note = document.getElementById("formNote");
-  if (!model || !name || !contact || !city || !address || !consent) {
-    note.textContent = "Заполни имя, модель iPhone, телефон и адрес доставки, а также отметь согласие на обработку данных.";
-    return;
-  }
-  if (GOOGLE_SCRIPT_URL.startsWith("PASTE_")) {
-    note.textContent = "Форма готова, но приём заказов ещё не подключён. Нужен URL опубликованного Google Apps Script.";
-    return;
-  }
-  const payload = {
-    orderId: "FM-" + Date.now().toString().slice(-8),
-    product: modalTitle.textContent,
-    collection: modalCategory.textContent,
-    phoneModel: model,
-    customerName: name,
-    contact,
-    city,
-    address,
-    postcode,
-    comment,
-    price: PRICE_RUB,
-    source: "FORME website"
-  };
-  const button = document.getElementById("copyEnquiry");
-  button.disabled = true;
-  button.textContent = "ОТПРАВЛЯЕМ ЗАКАЗ…";
-  try {
-    await fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: {"Content-Type":"text/plain;charset=utf-8"},
-      body: JSON.stringify(payload)
-    });
-    note.textContent = "Заказ отправлен. Чехол — 1 290 ₽. Мы свяжемся для подтверждения доставки.";
-    button.textContent = "ЗАКАЗ ОТПРАВЛЕН ✓";
-  } catch (error) {
-    note.textContent = "Не удалось отправить заказ. Попробуй ещё раз.";
-    button.disabled = false;
-    button.textContent = "ОФОРМИТЬ ЗАКАЗ · 1 290 ₽ ↗";
-  }
-});
-document.getElementById("menuToggle").addEventListener("click", () => {
-  const nav = document.getElementById("nav");
-  const open = nav.classList.toggle("open");
-  document.getElementById("menuToggle").setAttribute("aria-expanded", String(open));
-});
-document.querySelectorAll(".nav a").forEach(link => link.addEventListener("click", () => document.getElementById("nav").classList.remove("open")));
+function openProduct(p,button){selected=p;opener=button;document.getElementById('productTitle').textContent=p.name;document.getElementById('productCategory').textContent=labels[p.category];document.getElementById('productDescription').textContent=descriptions[p.category];const img=document.getElementById('productImage');img.src=p.image;img.alt=p.reference?'Пример коллекции. Точное фото уточняется.':p.name;document.getElementById('imageNote').textContent=p.reference?'На фото — пример коллекции. Запросим точное фото этого варианта до оплаты.':'Точный вид для твоей модели подтвердим перед заказом.';review.hidden=true;form.hidden=false;document.getElementById('copyStatus').textContent='';dialog.showModal();document.body.style.overflow='hidden';dialog.scrollTop=0}
+function closeProduct(){dialog.close()}
+document.getElementById('closeDialog').addEventListener('click',closeProduct);
+dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeProduct()}});
+dialog.addEventListener('close',()=>{document.body.style.overflow='';opener?.focus()});
+document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));let count=0;grid.querySelectorAll('.product-card').forEach(c=>{c.hidden=button.dataset.filter!=='all'&&c.dataset.category!==button.dataset.filter;if(!c.hidden)count++});document.getElementById('resultCount').textContent=`Дизайнов: ${count}`}));
+form.addEventListener('submit',event=>{event.preventDefault();if(!form.reportValidity()||!selected)return;const data=new FormData(form);for(const key of ['phoneModel','name','city','address']){const field=form.elements.namedItem(key);field.setCustomValidity(data.get(key).trim()?'':'Заполни это поле');if(!field.reportValidity())return}message=`Здравствуйте! Хочу уточнить заказ FORMÉ.\n\nДизайн: ${selected.name}\nМодель: ${data.get('phoneModel')}\nЧехол: 1 290 ₽\nДоставка: стоимость и срок уточнить\nИмя: ${data.get('name').trim()}\nГород: ${data.get('city').trim()}\nАдрес / пункт выдачи: ${data.get('address').trim()}${data.get('comment').trim()?'\nПожелания: '+data.get('comment').trim():''}${selected.reference?'\nНужно точное фото выбранного варианта.':''}\n\nПожалуйста, подтвердите наличие, совместимость и итоговую стоимость.`;document.getElementById('reviewText').textContent=message;document.getElementById('telegramOrder').href='https://t.me/FORME_CASE?text='+encodeURIComponent(message);form.hidden=true;review.hidden=false;document.getElementById('telegramOrder').focus()});
+form.addEventListener('input',event=>event.target.setCustomValidity?.(''));
+document.getElementById('editOrder').addEventListener('click',()=>{review.hidden=true;form.hidden=false;modelSelect.focus()});
+document.getElementById('copyOrder').addEventListener('click',async()=>{const status=document.getElementById('copyStatus');try{await navigator.clipboard.writeText(message);status.textContent='Текст скопирован. Вставь его в чат FORMÉ.'}catch{status.textContent='Выдели и скопируй текст заявки выше.'}});
+fetch('products.json').then(r=>{if(!r.ok)throw Error('catalog');return r.json()}).then(data=>{products=data;grid.replaceChildren(...products.map(cardFor))}).catch(()=>{const p=document.createElement('p');p.textContent='Каталог не загрузился. Обнови страницу или напиши нам в Telegram: @FORME_CASE.';grid.append(p)});
