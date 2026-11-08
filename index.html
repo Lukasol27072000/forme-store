@@ -174,7 +174,7 @@
           <p class="product-sub">Selected design — image to confirm</p>
         </article>
       </div>
-      <p class="catalog-note">Some selected variants are shown with a collection reference image until their exact original product image is added. No unverified colour or model availability is implied.</p>
+      <p class="catalog-note">Точные фотографии цветовых вариантов будут добавлены по оригинальным карточкам. До подтверждения совместимости заявка не считается заказом.</p>
     </section>
 
     <section class="model-band">
@@ -213,7 +213,9 @@
         <p class="eyebrow" id="modalCategory">FORMÉ FIRST EDITION</p>
         <h2 id="modalTitle">Product name</h2>
         <p class="modal-description">A selected design from the first FORMÉ edit. Product details and compatibility are confirmed individually before an order is accepted.</p>
-        <label for="phoneModel">YOUR IPHONE MODEL</label>
+        <label for="customerName">ИМЯ</label>
+        <input id="customerName" type="text" placeholder="Как к вам обращаться">
+        <label for="phoneModel">МОДЕЛЬ IPHONE</label>
         <select id="phoneModel">
           <option value="">Select your iPhone</option>
           <optgroup label="iPhone 18 series"><option>iPhone 18</option><option>iPhone 18 Plus</option><option>iPhone 18 Pro</option><option>iPhone 18 Pro Max</option></optgroup>
@@ -221,10 +223,12 @@
           <optgroup label="iPhone 16 series"><option>iPhone 16</option><option>iPhone 16 Plus</option><option>iPhone 16 Pro</option><option>iPhone 16 Pro Max</option><option>iPhone 16e</option></optgroup>
           <optgroup label="iPhone 15 series"><option>iPhone 15</option><option>iPhone 15 Plus</option><option>iPhone 15 Pro</option><option>iPhone 15 Pro Max</option></optgroup>
         </select>
-        <label for="customerContact">YOUR CONTACT</label>
-        <input id="customerContact" type="text" placeholder="Telegram @username or phone">
-        <button class="button button-dark modal-submit" id="copyEnquiry">COPY ENQUIRY</button>
-        <p class="form-note" id="formNote">This is an enquiry, not a confirmed order. Availability and fit are checked first.</p>
+        <label for="customerContact">ТЕЛЕФОН ИЛИ TELEGRAM</label>
+        <input id="customerContact" type="text" placeholder="@username или +7...">
+        <label for="customerComment">КОММЕНТАРИЙ (НЕОБЯЗАТЕЛЬНО)</label>
+        <input id="customerComment" type="text" placeholder="Цвет, пожелания, вопросы">
+        <button class="button button-dark modal-submit" id="copyEnquiry">ОТПРАВИТЬ ЗАЯВКУ <span>↗</span></button>
+        <p class="form-note" id="formNote">Заявка попадёт в таблицу FORMÉ. Оплата и подтверждение заказа — после проверки наличия.</p>
       </div>
     </div>
   </div>
