@@ -1,20 +1,14 @@
 const SPREADSHEET_ID = "1Qk5Svjxv-1O2FC2e24zcxnXebKVme0KN6P0DRTgbDmo";
 const SHEET_NAME = "Заявки";
-
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents || "{}");
     const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
     sheet.appendRow([
-      new Date(),
-      data.orderId || "",
-      data.product || "",
-      data.collection || "",
-      data.phoneModel || "",
-      data.customerName || "",
-      data.contact || "",
-      data.comment || "",
-      "Новая",
+      new Date(), data.orderId || "", data.product || "", data.collection || "",
+      data.phoneModel || "", data.customerName || "", data.contact || "",
+      data.city || "", data.address || "", data.postcode || "",
+      Number(data.price || 1290), data.comment || "", "Новый заказ",
       data.source || "FORME website"
     ]);
     return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON);
