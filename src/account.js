@@ -35,7 +35,14 @@ authForm.addEventListener('submit',async event=>{
  }catch(e){authStatus.textContent=errorMessage(e);}finally{button.disabled=false;}
 });
 document.getElementById('googleLogin').onclick=async()=>{
- try{assertResult(await db.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+'/account.html'}}));}catch(e){authStatus.textContent=errorMessage(e);}
+ const button=document.getElementById('googleLogin');button.disabled=true;
+ try{
+  const response=await fetch('https://ubassnbaqsblpmqtzjga.supabase.co/auth/v1/settings',{headers:{apikey:'sb_publishable_-BVwT30vV-Qa5wsNj5GVfg__pxF3fp7'}});
+  if(!response.ok)throw Error('Auth settings unavailable');
+  const settings=await response.json();
+  if(!settings.external?.google){authStatus.textContent='Вход через Google готовится. Войди по почте и паролю.';return;}
+  assertResult(await db.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+'/account.html'}}));
+ }catch(e){authStatus.textContent=errorMessage(e);}finally{button.disabled=false;}
 };
 document.getElementById('resetPassword').onclick=async()=>{
  const email=document.getElementById('email');if(!email.reportValidity())return;
