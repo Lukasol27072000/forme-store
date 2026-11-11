@@ -1,21 +1,12 @@
 import {db,currentUser,isAdmin,assertResult,escape,money,when,statuses,safeImage,errorMessage} from './client.js';
 import {insertOnce,setupSupport} from './support.js';
-let mode='login',recovery=location.hash.includes('type=recovery'),user=null,selected=null,orderId=null;
+let mode='login',user=null,selected=null,orderId=null;
 const authPanel=document.getElementById('authPanel');
 const authForm=document.getElementById('authForm');
 const authStatus=document.getElementById('authStatus');
 const params=new URLSearchParams(location.search);
 const productId=params.get('product')||sessionStorage.getItem('forme-product');
 if(params.get('product'))sessionStorage.setItem('forme-product',params.get('product'));
-db.auth.onAuthStateChange(event=>{if(event==='PASSWORD_RECOVERY'){recovery=true;showRecovery();}});
-function showRecovery(){
- authPanel.hidden=false;document.getElementById('memberPanel').hidden=true;
- document.getElementById('authTitle').textContent='Новый пароль';
- document.getElementById('authLead').textContent='Придумай пароль от 10 символов.';
- document.querySelector('.tabs').hidden=true;document.getElementById('email').required=false;document.getElementById('email').hidden=true;document.querySelector('[for=email]').hidden=true;
- document.getElementById('googleLogin').hidden=true;document.getElementById('resetPassword').hidden=true;
- document.getElementById('authSubmit').textContent='Сохранить пароль →';
-}
 document.querySelectorAll('[data-auth]').forEach(button=>button.onclick=()=>{
  mode=button.dataset.auth;document.querySelectorAll('[data-auth]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
  document.getElementById('authTitle').textContent=mode==='signup'?'Твой аккаунт FORMÉ.':'С возвращением.';
@@ -26,28 +17,17 @@ authForm.addEventListener('submit',async event=>{
  event.preventDefault();const button=document.getElementById('authSubmit');button.disabled=true;authStatus.textContent='Подключаемся…';
  try{
   const data=new FormData(authForm),email=data.get('email').trim(),password=data.get('password');
-  if(recovery){assertResult(await db.auth.updateUser({password}));location.replace('/account.html');return;}
   if(mode==='signup'){
-   const result=assertResult(await db.auth.signUp({email,password,options:{emailRedirectTo:location.origin+'/account.html'}}));
-   if(!result.session){authStatus.textContent='Проверь почту и подтверди аккаунт по ссылке из письма. Затем войди здесь.';return;}
+   const settingsResponse=await fetch('https://ubassnbaqsblpmqtzjga.supabase.co/auth/v1/settings',{headers:{apikey:'sb_publishable_-BVwT30vV-Qa5wsNj5GVfg__pxF3fp7'}});
+   if(!settingsResponse.ok)throw Error('Auth settings unavailable');
+   const settings=await settingsResponse.json();
+   if(!settings.mailer_autoconfirm){authStatus.textContent='Регистрация пока готовится. Помощь — @luka_sol.';return;}
+   const result=assertResult(await db.auth.signUp({email,password}));
+   if(!result.session){assertResult(await db.auth.signInWithPassword({email,password}));}
   }else assertResult(await db.auth.signInWithPassword({email,password}));
   user=await currentUser();await showMember();
  }catch(e){authStatus.textContent=errorMessage(e);}finally{button.disabled=false;}
 });
-document.getElementById('googleLogin').onclick=async()=>{
- const button=document.getElementById('googleLogin');button.disabled=true;
- try{
-  const response=await fetch('https://ubassnbaqsblpmqtzjga.supabase.co/auth/v1/settings',{headers:{apikey:'sb_publishable_-BVwT30vV-Qa5wsNj5GVfg__pxF3fp7'}});
-  if(!response.ok)throw Error('Auth settings unavailable');
-  const settings=await response.json();
-  if(!settings.external?.google){authStatus.textContent='Вход через Google готовится. Войди по почте и паролю.';return;}
-  assertResult(await db.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+'/account.html'}}));
- }catch(e){authStatus.textContent=errorMessage(e);}finally{button.disabled=false;}
-};
-document.getElementById('resetPassword').onclick=async()=>{
- const email=document.getElementById('email');if(!email.reportValidity())return;
- try{assertResult(await db.auth.resetPasswordForEmail(email.value.trim(),{redirectTo:location.origin+'/account.html'}));authStatus.textContent='Если аккаунт существует, на почту придёт ссылка для восстановления.';}catch(e){authStatus.textContent=errorMessage(e);}
-};
 document.getElementById('logout').onclick=async()=>{const {error}=await db.auth.signOut();if(!error)location.replace('/account.html');};
 async function loadOrders(){
  const rows=assertResult(await db.from('store_orders').select('*,store_order_events(*)').eq('user_id',user.id).order('created_at',{ascending:false}).limit(100));
@@ -87,10 +67,9 @@ document.getElementById('checkoutForm').addEventListener('submit',async event=>{
 let supportReady=false;
 async function showMember(){
  if(!user)return;
- if(recovery){showRecovery();return;}
  authPanel.hidden=true;document.getElementById('memberPanel').hidden=false;document.getElementById('logout').hidden=false;document.getElementById('memberEmail').textContent=user.email;
  document.getElementById('adminLink').hidden=!(await isAdmin());
  await loadOrders();await loadCheckout();
  if(!supportReady){await setupSupport(user);supportReady=true;}
 }
-try{user=await currentUser();if(recovery)showRecovery();else if(user)await showMember();}catch(e){authStatus.textContent=errorMessage(e);document.getElementById('ordersStatus').textContent=errorMessage(e);}
+try{user=await currentUser();if(user)await showMember();}catch(e){authStatus.textContent=errorMessage(e);document.getElementById('ordersStatus').textContent=errorMessage(e);}

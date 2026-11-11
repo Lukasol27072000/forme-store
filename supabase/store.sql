@@ -142,15 +142,6 @@ create table private.store_owner_emails(email text primary key);
 revoke all on private.store_owner_emails from public,anon,authenticated;
 alter table private.store_owner_emails enable row level security;
 create policy owner_emails_private on private.store_owner_emails for all to authenticated using(false) with check(false);
-create function private.sync_store_owner() returns trigger language plpgsql security definer set search_path='' as $$
-begin
- if new.email_confirmed_at is not null and exists(select 1 from private.store_owner_emails where email=lower(new.email)) then
-  insert into public.store_admins(user_id) values(new.id) on conflict do nothing;
- end if;
- return new;
-end; $$;
-revoke all on function private.sync_store_owner() from public;
-create trigger sync_store_owner after insert or update of email,email_confirmed_at on auth.users for each row execute function private.sync_store_owner();
 create function private.stamp_message() returns trigger language plpgsql security invoker set search_path='' as $$
 begin new.created_at=now(); return new; end; $$;
 create trigger stamp_message before insert on public.store_messages for each row execute function private.stamp_message();
