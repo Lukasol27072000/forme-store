@@ -7,6 +7,7 @@ create table public.store_profiles (
  constraint store_profiles_contact_shape check((contact_kind='' and contact='') or (contact_kind='telegram' and contact ~ '^@[A-Za-z][A-Za-z0-9_]{4,31}$') or (contact_kind='phone' and contact ~ '^\+[1-9][0-9]{6,14}$'))
 );
 alter table public.store_profiles enable row level security;
+revoke all on public.store_profiles from anon,authenticated;
 grant select on public.store_profiles to authenticated;
 grant insert(user_id,full_name,contact_kind,contact),update(user_id,full_name,contact_kind,contact) on public.store_profiles to authenticated;
 create policy profiles_read on public.store_profiles for select to authenticated using(user_id=(select auth.uid()) or (select public.store_is_admin()));
