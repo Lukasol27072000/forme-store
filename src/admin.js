@@ -1,3 +1,4 @@
+import {photoMarkup,phoneFinishes,finishOf} from './catalog.js';
 import {db,currentUser,isAdmin,assertResult,escape,money,when,statuses,categories,safeImage,errorMessage} from './client.js';
 import {setupSupport} from './support.js';
 const access=document.getElementById('accessStatus');
@@ -14,7 +15,7 @@ document.getElementById('orders').addEventListener('submit',async event=>{
  try{const data=new FormData(form);assertResult(await db.from('store_orders').update({status:data.get('status'),tracking_number:data.get('tracking_number').trim()}).eq('id',form.dataset.order).select().single());await loadOrders();}catch(e){form.querySelector('[role=status]').textContent=errorMessage(e);}finally{button.disabled=false;}
 });
 function showImages(){
- document.getElementById('productImages').innerHTML=images.map((url,index)=>`<div><img src="${escape(safeImage(url))}" alt="Фото ${index+1}"><button type="button" data-remove-image="${index}" class="text-button">Убрать из карточки</button>${index===0?'<small>Главное фото</small>':`<button type="button" data-main-image="${index}" class="text-button">Сделать главным</button>`}</div>`).join('');
+ document.getElementById('productImages').innerHTML=images.map((url,index)=>`<div>${photoMarkup(url,phoneFinishes[finishOf(url)]||`Фото ${index+1}`)}<button type="button" data-remove-image="${index}" class="text-button">Убрать из карточки</button>${index===0?'<small>Главное фото</small>':`<button type="button" data-main-image="${index}" class="text-button">Сделать главным</button>`}</div>`).join('');
 }
 document.getElementById('productImages').onclick=event=>{
  const remove=event.target.closest('[data-remove-image]'),main=event.target.closest('[data-main-image]');
@@ -32,7 +33,7 @@ function editProduct(product=null){
 }
 async function loadProducts(){
  products=assertResult(await db.from('store_products').select('*').order('created_at').limit(500));
- document.getElementById('adminProducts').innerHTML=products.map(p=>`<button class="admin-product" data-product="${escape(p.id)}"><img src="${escape(safeImage(p.images[0]))}" alt="${escape(p.name)}"><span><strong>${escape(p.name)}</strong><small>${money(p.price)} · ${p.active?'На витрине':'Скрыт'}</small></span><span>Изменить →</span></button>`).join('');
+ document.getElementById('adminProducts').innerHTML=products.map(p=>`<button class="admin-product" data-product="${escape(p.id)}">${photoMarkup(p.images[0],p.name)}<span><strong>${escape(p.name)}</strong><small>${money(p.price)} · ${p.active?'На витрине':'Скрыт'}</small></span><span>Изменить →</span></button>`).join('');
 }
 document.getElementById('adminProducts').onclick=event=>{const button=event.target.closest('[data-product]');if(button)editProduct(products.find(p=>p.id===button.dataset.product));};
 document.getElementById('newProduct').onclick=()=>editProduct();

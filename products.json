@@ -1,138 +1,431 @@
 [
   {
     "id": "1",
-    "name": "AZUL Phone Case",
+    "name": "AZUL — Cobalt",
     "category": "azul",
-    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/6882974D-5C4C-499A-960E-DF294ED45FB0.png?v=1790536846&width=1200",
-    "reference": false,
-    "description": "Blue decorative artwork"
+    "description": "Молочная основа и керамический мотив в кобальтово-синем. Спокойная деталь, которая притягивает взгляд.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/ceramic-silver.webp#view=0.0,0.0,399.67,656.0,1199,1312&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-silver.webp#view=0.0,0.0,399.67,656.0,1199,1312&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-deep-blue.webp#view=0.0,0.0,399.67,656.0,1199,1312&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-cosmic-orange.webp#view=0.0,0.0,399.67,656.0,1199,1312&finish=cosmic-orange"
+    ],
+    "reference": false
+  },
+  {
+    "id": "18",
+    "name": "AZUL — Burgundy",
+    "category": "azul",
+    "description": "Знакомый керамический орнамент в глубоком винном оттенке. Молочная основа делает рисунок особенно выразительным.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/ceramic-silver.webp#view=399.67,0.0,399.67,656.0,1199,1312&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-silver.webp#view=399.67,0.0,399.67,656.0,1199,1312&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-deep-blue.webp#view=399.67,0.0,399.67,656.0,1199,1312&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-cosmic-orange.webp#view=399.67,0.0,399.67,656.0,1199,1312&finish=cosmic-orange"
+    ],
+    "reference": false
   },
   {
     "id": "2",
-    "name": "AMOUR Evil Eye",
+    "name": "Evil Eye — Azure",
     "category": "evil-eye",
-    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/AMOUR_Evil_Eye_Phone_Case.png?v=1792572348&width=1200",
-    "reference": false,
-    "description": "A graphic eye motif"
+    "description": "Крупный синий глаз и свободные графичные линии на кремовом фоне. Для образов с одним ярким акцентом.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/eyes-silver.webp#view=0.0,0.0,399.0,657.0,1197,1314&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-silver.webp#view=0.0,0.0,399.0,657.0,1197,1314&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-deep-blue.webp#view=0.0,0.0,399.33,656.5,1198,1313&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-cosmic-orange.webp#view=0.0,0.0,399.33,656.5,1198,1313&finish=cosmic-orange"
+    ],
+    "reference": false
   },
   {
     "id": "3",
-    "name": "777 Evil Eye Black",
+    "name": "Evil Eye — Midnight",
     "category": "evil-eye",
-    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/777_Evil_Eye_Phone_Case_Black.png?v=1792573853&width=1200",
-    "reference": false,
-    "description": "Black case with blue eye detail"
+    "description": "Сияющий синий глаз на чёрном фоне. Контрастный рисунок и маленькая подпись FORMÉ.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/eyes-silver.webp#view=399.0,0.0,399.0,657.0,1197,1314&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-silver.webp#view=399.0,0.0,399.0,657.0,1197,1314&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-deep-blue.webp#view=399.33,0.0,399.33,656.5,1198,1313&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-cosmic-orange.webp#view=399.33,0.0,399.33,656.5,1198,1313&finish=cosmic-orange"
+    ],
+    "reference": false
   },
   {
     "id": "4",
     "name": "Abstract Evil Eye",
     "category": "evil-eye",
-    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Abstract_Evil_Eye_Phone_Case.png?v=1792574086&width=1200",
-    "reference": false,
-    "description": "Painterly blue eye artwork"
+    "description": "Свободные мазки, синие оттенки и повторяющийся мотив глаза. Маленькая абстрактная картина на каждый день.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/eyes-silver.webp#view=798.0,0.0,399.0,657.0,1197,1314&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-silver.webp#view=798.0,0.0,399.0,657.0,1197,1314&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-deep-blue.webp#view=798.67,0.0,399.33,656.5,1198,1313&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-cosmic-orange.webp#view=798.67,0.0,399.33,656.5,1198,1313&finish=cosmic-orange"
+    ],
+    "reference": false
   },
   {
     "id": "5",
     "name": "Blue Evil Eye Turtle",
     "category": "evil-eye",
-    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/evil-eye-turtle-shopify.png?v=1792797878&width=1200",
-    "reference": false,
-    "description": "Selected design — image to confirm"
+    "description": "Синяя черепаха с выразительным глазом на светлом фоне. Немного морского настроения в повседневном образе.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/eyes-silver.webp#view=0.0,657.0,399.0,657.0,1197,1314&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-silver.webp#view=0.0,657.0,399.0,657.0,1197,1314&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-deep-blue.webp#view=0.0,656.5,399.33,656.5,1198,1313&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-cosmic-orange.webp#view=0.0,656.5,399.33,656.5,1198,1313&finish=cosmic-orange"
+    ],
+    "reference": false
   },
   {
     "id": "6",
     "name": "Blue Eye Swirl",
     "category": "evil-eye",
-    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Blue_Eye_Swirl_Phone_Case_aafc3063-1a1b-43c5-80ac-610db4e69528.jpg?v=1792797878&width=1200",
-    "reference": false,
-    "description": "Selected design — image to confirm"
+    "description": "Белые и тёмно-синие круги с эффектом тай-дай. Мягкий ритм рисунка, который хочется рассматривать.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/eyes-silver.webp#view=399.0,657.0,399.0,657.0,1197,1314&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-silver.webp#view=399.0,657.0,399.0,657.0,1197,1314&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-deep-blue.webp#view=399.33,656.5,399.33,656.5,1198,1313&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-cosmic-orange.webp#view=399.33,656.5,399.33,656.5,1198,1313&finish=cosmic-orange"
+    ],
+    "reference": false
   },
   {
     "id": "7",
     "name": "Blue Evil Eye",
     "category": "evil-eye",
-    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Blue_Evil_Eye_Phone_Case_fa728621-4b5e-4ee5-9d56-a99cc4f0b95f.jpg?v=1792707170&width=1200",
-    "reference": false,
-    "description": "Selected design — image to confirm"
-  },
-  {
-    "id": "8",
-    "name": "Ocean Logo Phone Case",
-    "category": "ocean",
-    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/15901570466166-hero-normalized.png?v=1794002838&width=1200",
-    "reference": false,
-    "description": "Blue ocean-inspired artwork"
+    "description": "Чистый голубой фон и лаконичный символ глаза. Простой, заметный и легко сочетаемый дизайн.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/eyes-silver.webp#view=798.0,657.0,399.0,657.0,1197,1314&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-silver.webp#view=798.0,657.0,399.0,657.0,1197,1314&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-deep-blue.webp#view=798.67,656.5,399.33,656.5,1198,1313&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/eyes-cosmic-orange.webp#view=798.67,656.5,399.33,656.5,1198,1313&finish=cosmic-orange"
+    ],
+    "reference": false
   },
   {
     "id": "9",
     "name": "Racetrack — Blue",
     "category": "racetrack",
-    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/15901548216694-hero-normalized.png?v=1794002801&width=1200",
-    "reference": false,
-    "description": "Blue motorsport artwork"
+    "description": "Синий болид, поворот у океана и цветы вдоль трассы. Летняя гонка, которая всегда с тобой.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/race-silver.webp#view=192.0,0.0,384.0,512.0,1536,1024&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/race-silver.webp#view=192.0,0.0,384.0,512.0,1536,1024&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/race-deep-blue.webp#view=192.0,0.0,384.0,512.0,1536,1024&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/race-cosmic-orange.webp#view=192.0,0.0,384.0,512.0,1536,1024&finish=cosmic-orange"
+    ],
+    "reference": false
   },
   {
     "id": "10",
     "name": "Racetrack — Burgundy",
     "category": "racetrack",
-    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Racetrack_Phone_Case_Burgundy.png?v=1792571730&width=1200",
-    "reference": false,
-    "description": "Colour option selected; image to confirm"
+    "description": "Бордовый болид на светлой прибрежной трассе. Винный акцент среди морской синевы и тропической зелени.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/race-silver.webp#view=576.0,0.0,384.0,512.0,1536,1024&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/race-silver.webp#view=576.0,0.0,384.0,512.0,1536,1024&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/race-deep-blue.webp#view=576.0,0.0,384.0,512.0,1536,1024&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/race-cosmic-orange.webp#view=576.0,0.0,384.0,512.0,1536,1024&finish=cosmic-orange"
+    ],
+    "reference": false
   },
   {
     "id": "11",
-    "name": "Racetrack — Pink Car",
+    "name": "Racetrack — Pink",
     "category": "racetrack",
-    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/0CA21E7A-7A57-43EF-B551-754358A368F6.png?v=1793911600&width=1200",
-    "reference": false,
-    "description": "Colour option selected; image to confirm"
+    "description": "Розовый болид на повороте у моря. Спортивный сюжет с неожиданно нежным настроением.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/race-silver.webp#view=960.0,0.0,384.0,512.0,1536,1024&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/race-silver.webp#view=960.0,0.0,384.0,512.0,1536,1024&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/race-deep-blue.webp#view=960.0,0.0,384.0,512.0,1536,1024&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/race-cosmic-orange.webp#view=960.0,0.0,384.0,512.0,1536,1024&finish=cosmic-orange"
+    ],
+    "reference": false
   },
   {
     "id": "12",
     "name": "Racetrack — Red",
     "category": "racetrack",
-    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Racetrack_Phone_Case_Red.png?v=1792612757&width=1200",
-    "reference": false,
-    "description": "Colour option selected; image to confirm"
+    "description": "Красный болид, океан и крутой поворот. Выразительный дизайн для тех, кто любит цвет и движение.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/race-silver.webp#view=384.0,512.0,384.0,512.0,1536,1024&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/race-silver.webp#view=384.0,512.0,384.0,512.0,1536,1024&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/race-deep-blue.webp#view=384.0,512.0,384.0,512.0,1536,1024&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/race-cosmic-orange.webp#view=384.0,512.0,384.0,512.0,1536,1024&finish=cosmic-orange"
+    ],
+    "reference": false
   },
   {
     "id": "13",
     "name": "Racetrack — Green",
     "category": "racetrack",
-    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Racetrack_Phone_Case_Green.png?v=1792612487&width=1200",
-    "reference": false,
-    "description": "Colour option selected; image to confirm"
+    "description": "Зелёный болид на тропической трассе. Свежий цвет и азарт маленькой гонки.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/race-silver.webp#view=768.0,512.0,384.0,512.0,1536,1024&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/race-silver.webp#view=768.0,512.0,384.0,512.0,1536,1024&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/race-deep-blue.webp#view=768.0,512.0,384.0,512.0,1536,1024&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/race-cosmic-orange.webp#view=768.0,512.0,384.0,512.0,1536,1024&finish=cosmic-orange"
+    ],
+    "reference": false
   },
   {
     "id": "14",
     "name": "Burgundy Leopard",
     "category": "leopard",
-    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Burgundy_Leopard_Phone_Case_Approved_Studio_45849d77-a364-4381-9ec8-9b96e0d882cb.png?v=1792718738&width=1200",
-    "reference": false,
-    "description": "Leopard artwork on burgundy"
+    "description": "Две золотистые фигуры леопардов на винном фоне. Тёплое сочетание для лаконичных и вечерних образов.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/ceramic-silver.webp#view=799.33,0.0,399.67,656.0,1199,1312&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-silver.webp#view=799.33,0.0,399.67,656.0,1199,1312&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-deep-blue.webp#view=799.33,0.0,399.67,656.0,1199,1312&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-cosmic-orange.webp#view=799.33,0.0,399.67,656.0,1199,1312&finish=cosmic-orange"
+    ],
+    "reference": false
   },
   {
     "id": "15",
     "name": "Black Leopard",
     "category": "leopard",
-    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Black_Leopard_Phone_Case.png?v=1792578498&width=1200",
-    "reference": false,
-    "description": "Selected design — image to confirm"
+    "description": "Золотистые леопарды на глубоком чёрном. Графичный контраст, которому не нужны лишние детали.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/ceramic-silver.webp#view=0.0,656.0,399.67,656.0,1199,1312&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-silver.webp#view=0.0,656.0,399.67,656.0,1199,1312&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-deep-blue.webp#view=0.0,656.0,399.67,656.0,1199,1312&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-cosmic-orange.webp#view=0.0,656.0,399.67,656.0,1199,1312&finish=cosmic-orange"
+    ],
+    "reference": false
   },
   {
     "id": "16",
     "name": "Blush Leopard Duo",
     "category": "leopard",
-    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Blush_Leopard_Duo_Phone_Case.jpg?v=1793311728&width=1200",
-    "reference": false,
-    "description": "Selected design — image to confirm"
+    "description": "Розовые леопарды на нежной кремовой основе. Мягкий цвет и характерный рисунок в одной детали.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/ceramic-silver.webp#view=399.67,656.0,399.67,656.0,1199,1312&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-silver.webp#view=399.67,656.0,399.67,656.0,1199,1312&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-deep-blue.webp#view=399.67,656.0,399.67,656.0,1199,1312&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-cosmic-orange.webp#view=399.67,656.0,399.67,656.0,1199,1312&finish=cosmic-orange"
+    ],
+    "reference": false
   },
   {
     "id": "17",
     "name": "Khaki Green Leopard",
     "category": "leopard",
-    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Khaki_Green_Leopard_Phone_Case.png?v=1792605526&width=1200",
-    "reference": false,
-    "description": "Selected design — image to confirm"
+    "description": "Золотистые леопарды и глубокий оттенок хаки. Сдержанная палитра с выразительным животным мотивом.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/ceramic-silver.webp#view=799.33,656.0,399.67,656.0,1199,1312&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-silver.webp#view=799.33,656.0,399.67,656.0,1199,1312&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-deep-blue.webp#view=799.33,656.0,399.67,656.0,1199,1312&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/ceramic-cosmic-orange.webp#view=799.33,656.0,399.67,656.0,1199,1312&finish=cosmic-orange"
+    ],
+    "reference": false
+  },
+  {
+    "id": "32",
+    "name": "Off White Jaguar",
+    "category": "leopard",
+    "description": "Тонко прорисованные пятнистые кошки на молочном фоне. Спокойный цвет, красивая графика и много воздуха.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/edit-silver.webp#view=543.0,0.0,543.0,724.0,1086,1448&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/edit-silver.webp#view=543.0,0.0,543.0,724.0,1086,1448&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/edit-deep-blue.webp#view=543.0,0.0,543.0,724.0,1086,1448&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/edit-cosmic-orange.webp#view=543.0,0.0,543.0,724.0,1086,1448&finish=cosmic-orange"
+    ],
+    "reference": false
+  },
+  {
+    "id": "33",
+    "name": "Burgundy Brick",
+    "category": "leopard",
+    "description": "Бордовый рисунок с эффектом крокодиловой фактуры. Игра света и тени создаёт ощущение глубины — это принт, а не заявление о материале чехла.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/edit-silver.webp#view=0.0,724.0,543.0,724.0,1086,1448&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/edit-silver.webp#view=0.0,724.0,543.0,724.0,1086,1448&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/edit-deep-blue.webp#view=0.0,724.0,543.0,724.0,1086,1448&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/edit-cosmic-orange.webp#view=0.0,724.0,543.0,724.0,1086,1448&finish=cosmic-orange"
+    ],
+    "reference": false
+  },
+  {
+    "id": "19",
+    "name": "Après-Ski — Ivory",
+    "category": "apres-ski",
+    "description": "Лыжница в зеркальной маске на молочном фоне. Атмосфера горного курорта и отдыха после спуска.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/ski-silver.webp#view=0.0,0.0,399.33,656.5,1198,1313&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-silver.webp#view=0.0,0.0,399.33,656.5,1198,1313&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-deep-blue.webp#view=0.0,0.0,399.33,656.5,1198,1313&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-cosmic-orange.webp#view=0.0,0.0,399.33,656.5,1198,1313&finish=cosmic-orange"
+    ],
+    "reference": false
+  },
+  {
+    "id": "20",
+    "name": "Après-Ski — Black",
+    "category": "apres-ski",
+    "description": "Зимний fashion-портрет на чёрной основе. Светлые детали и отражения гор в лыжной маске.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/ski-silver.webp#view=399.33,0.0,399.33,656.5,1198,1313&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-silver.webp#view=399.33,0.0,399.33,656.5,1198,1313&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-deep-blue.webp#view=399.33,0.0,399.33,656.5,1198,1313&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-cosmic-orange.webp#view=399.33,0.0,399.33,656.5,1198,1313&finish=cosmic-orange"
+    ],
+    "reference": false
+  },
+  {
+    "id": "21",
+    "name": "Après-Ski — Burgundy",
+    "category": "apres-ski",
+    "description": "Лыжница и глубокий бордовый фон. Тёплый винный акцент для холодного сезона.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/ski-silver.webp#view=798.67,0.0,399.33,656.5,1198,1313&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-silver.webp#view=798.67,0.0,399.33,656.5,1198,1313&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-deep-blue.webp#view=798.67,0.0,399.33,656.5,1198,1313&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-cosmic-orange.webp#view=798.67,0.0,399.33,656.5,1198,1313&finish=cosmic-orange"
+    ],
+    "reference": false
+  },
+  {
+    "id": "8",
+    "name": "Ocean Wave",
+    "category": "ocean",
+    "description": "Объёмный на вид рисунок морской волны в синих и белых оттенках. Океан без лишних символов.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/edit-silver.webp#view=543.0,724.0,543.0,724.0,1086,1448&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/edit-silver.webp#view=543.0,724.0,543.0,724.0,1086,1448&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/edit-deep-blue.webp#view=543.0,724.0,543.0,724.0,1086,1448&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/edit-cosmic-orange.webp#view=543.0,724.0,543.0,724.0,1086,1448&finish=cosmic-orange"
+    ],
+    "reference": false
+  },
+  {
+    "id": "23",
+    "name": "Tiny Surfers — Blue",
+    "category": "ocean",
+    "description": "Миниатюрные сёрферы на голубой воде. Сюжет, который заметен вблизи и превращается в лёгкий узор издалека.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/ski-silver.webp#view=399.33,656.5,399.33,656.5,1198,1313&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-silver.webp#view=399.33,656.5,399.33,656.5,1198,1313&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-deep-blue.webp#view=399.33,656.5,399.33,656.5,1198,1313&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-cosmic-orange.webp#view=399.33,656.5,399.33,656.5,1198,1313&finish=cosmic-orange"
+    ],
+    "reference": false
+  },
+  {
+    "id": "24",
+    "name": "Burgundy Surfer",
+    "category": "ocean",
+    "description": "Девушка на доске, тёмная вода и бордовый горизонт. Спокойный кадр между солнцем и вечером.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/ski-silver.webp#view=798.67,656.5,399.33,656.5,1198,1313&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-silver.webp#view=798.67,656.5,399.33,656.5,1198,1313&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-deep-blue.webp#view=798.67,656.5,399.33,656.5,1198,1313&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-cosmic-orange.webp#view=798.67,656.5,399.33,656.5,1198,1313&finish=cosmic-orange"
+    ],
+    "reference": false
+  },
+  {
+    "id": "25",
+    "name": "Navy Sailboat",
+    "category": "ocean",
+    "description": "Светлый парусник пересекает тёмно-синее море. Лаконичный сюжет с ощущением простора.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/club-silver.webp#view=0.0,0.0,512.0,512.0,1536,1024&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/club-silver.webp#view=0.0,0.0,512.0,512.0,1536,1024&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/club-deep-blue.webp#view=0.0,0.0,512.0,512.0,1536,1024&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/club-cosmic-orange.webp#view=0.0,0.0,512.0,512.0,1536,1024&finish=cosmic-orange"
+    ],
+    "reference": false
+  },
+  {
+    "id": "26",
+    "name": "Blue Ocean Yacht",
+    "category": "ocean",
+    "description": "Белая яхта и бирюзовый след на воде. Морской пейзаж с высоты, который хочется взять с собой.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/club-silver.webp#view=512.0,0.0,512.0,512.0,1536,1024&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/club-silver.webp#view=512.0,0.0,512.0,512.0,1536,1024&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/club-deep-blue.webp#view=512.0,0.0,512.0,512.0,1536,1024&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/club-cosmic-orange.webp#view=512.0,0.0,512.0,512.0,1536,1024&finish=cosmic-orange"
+    ],
+    "reference": false
+  },
+  {
+    "id": "22",
+    "name": "Pool Table",
+    "category": "after-hours",
+    "description": "Вечерний бильярд и выразительный портрет в тёплых оттенках. Для настроения, в котором хочется задержаться.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/ski-silver.webp#view=0.0,656.5,399.33,656.5,1198,1313&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-silver.webp#view=0.0,656.5,399.33,656.5,1198,1313&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-deep-blue.webp#view=0.0,656.5,399.33,656.5,1198,1313&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/ski-cosmic-orange.webp#view=0.0,656.5,399.33,656.5,1198,1313&finish=cosmic-orange"
+    ],
+    "reference": false
+  },
+  {
+    "id": "27",
+    "name": "Racing Driver",
+    "category": "after-hours",
+    "description": "Гонщик в красном комбинезоне и маленькая подпись FORMÉ. Энергия автоспорта в выразительном портрете.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/club-silver.webp#view=1024.0,0.0,512.0,512.0,1536,1024&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/club-silver.webp#view=1024.0,0.0,512.0,512.0,1536,1024&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/club-deep-blue.webp#view=1024.0,0.0,512.0,512.0,1536,1024&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/club-cosmic-orange.webp#view=1024.0,0.0,512.0,512.0,1536,1024&finish=cosmic-orange"
+    ],
+    "reference": false
+  },
+  {
+    "id": "28",
+    "name": "Monochrome Sports Cars",
+    "category": "after-hours",
+    "description": "Ряд спортивных автомобилей на молочном фоне. Монохромный рисунок для любителей автомобильной эстетики.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/club-silver.webp#view=0.0,512.0,512.0,512.0,1536,1024&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/club-silver.webp#view=0.0,512.0,512.0,512.0,1536,1024&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/club-deep-blue.webp#view=0.0,512.0,512.0,512.0,1536,1024&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/club-cosmic-orange.webp#view=0.0,512.0,512.0,512.0,1536,1024&finish=cosmic-orange"
+    ],
+    "reference": false
+  },
+  {
+    "id": "29",
+    "name": "Miami — Burgundy",
+    "category": "after-hours",
+    "description": "Светлые пальмы на глубоком винном фоне. Тропический вечер в спокойной, насыщенной палитре.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/club-silver.webp#view=512.0,512.0,512.0,512.0,1536,1024&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/club-silver.webp#view=512.0,512.0,512.0,512.0,1536,1024&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/club-deep-blue.webp#view=512.0,512.0,512.0,512.0,1536,1024&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/club-cosmic-orange.webp#view=512.0,512.0,512.0,512.0,1536,1024&finish=cosmic-orange"
+    ],
+    "reference": false
+  },
+  {
+    "id": "30",
+    "name": "Miami — Pink",
+    "category": "after-hours",
+    "description": "Светлые пальмы и яркая розовая основа. Деталь для образов, которым хочется добавить цвета.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/club-silver.webp#view=1024.0,512.0,512.0,512.0,1536,1024&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/club-silver.webp#view=1024.0,512.0,512.0,512.0,1536,1024&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/club-deep-blue.webp#view=1024.0,512.0,512.0,512.0,1536,1024&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/club-cosmic-orange.webp#view=1024.0,512.0,512.0,512.0,1536,1024&finish=cosmic-orange"
+    ],
+    "reference": false
+  },
+  {
+    "id": "31",
+    "name": "Miami — Deep Blue",
+    "category": "after-hours",
+    "description": "Золотистая зелень пальм на тёмно-синем. Настроение тёплого вечера у океана.",
+    "image": "https://forme-store-luka-sol.vercel.app/catalog/edit-silver.webp#view=0.0,0.0,543.0,724.0,1086,1448&finish=silver",
+    "images": [
+      "https://forme-store-luka-sol.vercel.app/catalog/edit-silver.webp#view=0.0,0.0,543.0,724.0,1086,1448&finish=silver",
+      "https://forme-store-luka-sol.vercel.app/catalog/edit-deep-blue.webp#view=0.0,0.0,543.0,724.0,1086,1448&finish=deep-blue",
+      "https://forme-store-luka-sol.vercel.app/catalog/edit-cosmic-orange.webp#view=0.0,0.0,543.0,724.0,1086,1448&finish=cosmic-orange"
+    ],
+    "reference": false
   }
 ]

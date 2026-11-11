@@ -1,12 +1,13 @@
 import { createClient } from '@supabase/supabase-js';
+import {collections} from './catalog.js';
 export const db = createClient('https://ubassnbaqsblpmqtzjga.supabase.co','sb_publishable_-BVwT30vV-Qa5wsNj5GVfg__pxF3fp7');
 export const statuses = {pending:'Ожидает подтверждения',confirmed:'Подтверждён',shipped:'Отправлен',delivered:'Доставлен',cancelled:'Отменён'};
-export const categories = {azul:'AZUL','evil-eye':'EVIL EYE',ocean:'OCEAN',racetrack:'RACETRACK',leopard:'LEOPARD'};
+export const categories = Object.fromEntries(Object.entries(collections).map(([key,value])=>[key,value.name]));
 export const money = value => new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',maximumFractionDigits:2}).format(value/100);
 export const escape = value => String(value??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const when = value => new Date(value).toLocaleString('ru-RU');
 export function safeImage(value) {
- try { const url=new URL(value); return url.protocol==='https:'?url.href:''; } catch { return ''; }
+ try { const url=new URL(value,location.origin); return url.protocol==='https:'||url.origin===location.origin?url.href:''; } catch { return ''; }
 }
 export function assertResult(result) { if(result.error) throw result.error; return result.data; }
 export async function currentUser() { const {data,error}=await db.auth.getUser(); if(error) return null; return data.user; }
