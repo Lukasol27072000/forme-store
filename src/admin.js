@@ -8,7 +8,7 @@ async function loadOrders(){
  let query=db.from('store_orders').select('*').order('created_at',{ascending:false}).limit(200);
  const filter=document.getElementById('orderFilter').value;if(filter!=='all')query=query.eq('status',filter);
  const orders=assertResult(await query);
- document.getElementById('orders').innerHTML=orders.length?orders.map(o=>`<article class="order-card"><div class="panel-heading"><div><small>№ ${escape(o.id.slice(0,8))} · ${when(o.created_at)}</small><h3>${escape(o.product_name)}</h3><p>${escape(o.phone_model)} · ${money(o.unit_price)}</p></div><span class="badge">${statuses[o.status]}</span></div><p>${escape(o.customer_name)} · ${escape(o.contact)}<br>${escape(o.city)}, ${escape(o.address)}</p>${o.comment?`<p class="customer-comment">${escape(o.comment)}</p>`:''}<form class="order-update" data-order="${escape(o.id)}"><label>Статус<select name="status">${Object.entries(statuses).map(([key,label])=>`<option value="${key}" ${key===o.status?'selected':''}>${label}</option>`).join('')}</select></label><label>Трек-номер<input name="tracking_number" value="${escape(o.tracking_number)}" maxlength="150"></label><button class="button" type="submit">Сохранить</button><p role="status" class="notice"></p></form></article>`).join(''):'<p class="empty">Заказов с таким статусом пока нет.</p>';
+ document.getElementById('orders').innerHTML=orders.length?orders.map(o=>`<article class="order-card"><div class="panel-heading"><div><small>№ ${escape(o.id.slice(0,8))} · ${when(o.created_at)}</small><h3>${escape(o.product_name)}</h3><p>${escape(o.phone_model)} · ${money(o.unit_price)}</p></div><span class="badge">${statuses[o.status]}</span></div><p>${escape(o.customer_name)} · ${escape(o.contact)}<br>${escape(o.city)}, ${escape(o.address)}</p>${o.phone_finish?`<p>Цвет iPhone: ${escape(phoneFinishes[o.phone_finish]||o.phone_finish)}</p>`:''}${o.bundle_snapshot?.length?`<details class="bundle-order-contents"><summary>Состав набора · ${o.bundle_snapshot.length} чехлов</summary><ol>${o.bundle_snapshot.map(item=>`<li>${escape(item.name)} — 1 шт.</li>`).join('')}</ol></details>`:''}${o.comment?`<p class="customer-comment">${escape(o.comment)}</p>`:''}<form class="order-update" data-order="${escape(o.id)}"><label>Статус<select name="status">${Object.entries(statuses).map(([key,label])=>`<option value="${key}" ${key===o.status?'selected':''}>${label}</option>`).join('')}</select></label><label>Трек-номер<input name="tracking_number" value="${escape(o.tracking_number)}" maxlength="150"></label><button class="button" type="submit">Сохранить</button><p role="status" class="notice"></p></form></article>`).join(''):'<p class="empty">Заказов с таким статусом пока нет.</p>';
 }
 document.getElementById('orders').addEventListener('submit',async event=>{
  const form=event.target.closest('[data-order]');if(!form)return;event.preventDefault();const button=form.querySelector('button');button.disabled=true;
@@ -25,6 +25,7 @@ document.getElementById('productImages').onclick=event=>{
 };
 function editProduct(product=null){
  productForm.reset();productForm.hidden=false;
+ productForm.elements.category.querySelector('[value=edits]').disabled=product?.kind!=='bundle';
  for(const key of ['id','name','category','description'])productForm.elements[key].value=product?.[key]??(key==='category'?'azul':'');
  productForm.elements.price.value=product?product.price/100:1290;
  productForm.elements.compatible_models.value=product?.compatible_models.join('\n')||'';
@@ -33,7 +34,7 @@ function editProduct(product=null){
 }
 async function loadProducts(){
  products=assertResult(await db.from('store_products').select('*').order('created_at').limit(500));
- document.getElementById('adminProducts').innerHTML=products.map(p=>`<button class="admin-product" data-product="${escape(p.id)}">${photoMarkup(p.images[0],p.name)}<span><strong>${escape(p.name)}</strong><small>${money(p.price)} · ${p.active?'На витрине':'Скрыт'}</small></span><span>Изменить →</span></button>`).join('');
+ document.getElementById('adminProducts').innerHTML=products.map(p=>`<button class="admin-product" data-product="${escape(p.id)}">${photoMarkup(p.images[0],p.name)}<span><strong>${escape(p.name)}</strong><small>${money(p.price)}${p.kind==='bundle'?' · 8 чехлов':''} · ${p.active?'На витрине':'Скрыт'}</small></span><span>Изменить →</span></button>`).join('');
 }
 document.getElementById('adminProducts').onclick=event=>{const button=event.target.closest('[data-product]');if(button)editProduct(products.find(p=>p.id===button.dataset.product));};
 document.getElementById('newProduct').onclick=()=>editProduct();

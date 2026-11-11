@@ -2,7 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 import {collections} from './catalog.js';
 export const db = createClient('https://ubassnbaqsblpmqtzjga.supabase.co','sb_publishable_-BVwT30vV-Qa5wsNj5GVfg__pxF3fp7');
 export const statuses = {pending:'Ожидает подтверждения',confirmed:'Подтверждён',shipped:'Отправлен',delivered:'Доставлен',cancelled:'Отменён'};
-export const categories = Object.fromEntries(Object.entries(collections).map(([key,value])=>[key,value.name]));
+export const categories = Object.fromEntries(Object.entries(collections).map(([key,value])=>[key,value.name]).concat([['edits','PHONE EDITS']]));
 export const money = value => new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',maximumFractionDigits:2}).format(value/100);
 export const escape = value => String(value??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const when = value => new Date(value).toLocaleString('ru-RU');
@@ -15,7 +15,7 @@ export async function isAdmin() { return assertResult(await db.rpc('store_is_adm
 export function errorMessage(error) {
  const text=error?.message||'';
  if(/Price changed/i.test(text)) return 'Цена изменилась. Обнови страницу и проверь сумму перед оформлением.';
- if(/Product unavailable|Unsupported phone model/i.test(text)) return 'Чехол или выбранная модель сейчас недоступны. Обнови страницу.';
+ if(/Product unavailable|Unsupported phone model|Bundle unavailable/i.test(text)) return 'Чехол или выбранная модель сейчас недоступны. Обнови страницу.';
  if(/Invalid login credentials/i.test(text)) return 'Проверь почту и пароль.';
  if(/Email not confirmed/i.test(text)) return 'Подтверди почту по ссылке из письма.';
  if(/rate limit|too many/i.test(text)) return 'Слишком много попыток. Попробуй немного позже.';
