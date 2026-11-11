@@ -3,7 +3,7 @@
     "id": "1",
     "name": "AZUL Phone Case",
     "category": "azul",
-    "image": "https://nolovesociety.co.uk/cdn/shop/files/6882974D-5C4C-499A-960E-DF294ED45FB0.png?v=1790536846&width=900",
+    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/6882974D-5C4C-499A-960E-DF294ED45FB0.png?v=1790536846&width=1200",
     "reference": false,
     "description": "Blue decorative artwork"
   },
@@ -11,7 +11,7 @@
     "id": "2",
     "name": "AMOUR Evil Eye",
     "category": "evil-eye",
-    "image": "https://nolovesociety.co.uk/cdn/shop/files/AMOUR_Evil_Eye_Phone_Case.png?v=1792572348&width=900",
+    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/AMOUR_Evil_Eye_Phone_Case.png?v=1792572348&width=1200",
     "reference": false,
     "description": "A graphic eye motif"
   },
@@ -19,7 +19,7 @@
     "id": "3",
     "name": "777 Evil Eye Black",
     "category": "evil-eye",
-    "image": "https://nolovesociety.co.uk/cdn/shop/files/0BE2FA5A-8338-4507-829E-9463EA663034.jpg?v=1789927108&width=900",
+    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/777_Evil_Eye_Phone_Case_Black.png?v=1792573853&width=1200",
     "reference": false,
     "description": "Black case with blue eye detail"
   },
@@ -27,7 +27,7 @@
     "id": "4",
     "name": "Abstract Evil Eye",
     "category": "evil-eye",
-    "image": "https://nolovesociety.co.uk/cdn/shop/files/9F1645C7-7812-4FCC-BF09-85264A818783.png?v=1791065617&width=900",
+    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Abstract_Evil_Eye_Phone_Case.png?v=1792574086&width=1200",
     "reference": false,
     "description": "Painterly blue eye artwork"
   },
@@ -35,31 +35,31 @@
     "id": "5",
     "name": "Blue Evil Eye Turtle",
     "category": "evil-eye",
-    "image": "https://nolovesociety.co.uk/cdn/shop/files/AMOUR_Evil_Eye_Phone_Case.png?v=1792572348&width=900",
-    "reference": true,
+    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/evil-eye-turtle-shopify.png?v=1792797878&width=1200",
+    "reference": false,
     "description": "Selected design — image to confirm"
   },
   {
     "id": "6",
     "name": "Blue Eye Swirl",
     "category": "evil-eye",
-    "image": "https://nolovesociety.co.uk/cdn/shop/files/9F1645C7-7812-4FCC-BF09-85264A818783.png?v=1791065617&width=900",
-    "reference": true,
+    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Blue_Eye_Swirl_Phone_Case_aafc3063-1a1b-43c5-80ac-610db4e69528.jpg?v=1792797878&width=1200",
+    "reference": false,
     "description": "Selected design — image to confirm"
   },
   {
     "id": "7",
     "name": "Blue Evil Eye",
     "category": "evil-eye",
-    "image": "https://nolovesociety.co.uk/cdn/shop/files/AMOUR_Evil_Eye_Phone_Case.png?v=1792572348&width=900",
-    "reference": true,
+    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Blue_Evil_Eye_Phone_Case_fa728621-4b5e-4ee5-9d56-a99cc4f0b95f.jpg?v=1792707170&width=1200",
+    "reference": false,
     "description": "Selected design — image to confirm"
   },
   {
     "id": "8",
     "name": "Ocean Logo Phone Case",
     "category": "ocean",
-    "image": "https://nolovesociety.co.uk/cdn/shop/files/15901570466166-hero-normalized.png?v=1794002838&width=900",
+    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/15901570466166-hero-normalized.png?v=1794002838&width=1200",
     "reference": false,
     "description": "Blue ocean-inspired artwork"
   },
@@ -67,7 +67,7 @@
     "id": "9",
     "name": "Racetrack — Blue",
     "category": "racetrack",
-    "image": "https://nolovesociety.co.uk/cdn/shop/files/15901548216694-hero-normalized.png?v=1794002801&width=900",
+    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/15901548216694-hero-normalized.png?v=1794002801&width=1200",
     "reference": false,
     "description": "Blue motorsport artwork"
   },
@@ -75,39 +75,39 @@
     "id": "10",
     "name": "Racetrack — Burgundy",
     "category": "racetrack",
-    "image": "https://nolovesociety.co.uk/cdn/shop/files/15901548216694-hero-normalized.png?v=1794002801&width=900",
-    "reference": true,
+    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Racetrack_Phone_Case_Burgundy.png?v=1792571730&width=1200",
+    "reference": false,
     "description": "Colour option selected; image to confirm"
   },
   {
     "id": "11",
     "name": "Racetrack — Pink Car",
     "category": "racetrack",
-    "image": "https://nolovesociety.co.uk/cdn/shop/files/15901548216694-hero-normalized.png?v=1794002801&width=900",
-    "reference": true,
+    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/0CA21E7A-7A57-43EF-B551-754358A368F6.png?v=1793911600&width=1200",
+    "reference": false,
     "description": "Colour option selected; image to confirm"
   },
   {
     "id": "12",
     "name": "Racetrack — Red",
     "category": "racetrack",
-    "image": "https://nolovesociety.co.uk/cdn/shop/files/15901548216694-hero-normalized.png?v=1794002801&width=900",
-    "reference": true,
+    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Racetrack_Phone_Case_Red.png?v=1792612757&width=1200",
+    "reference": false,
     "description": "Colour option selected; image to confirm"
   },
   {
     "id": "13",
     "name": "Racetrack — Green",
     "category": "racetrack",
-    "image": "https://nolovesociety.co.uk/cdn/shop/files/15901548216694-hero-normalized.png?v=1794002801&width=900",
-    "reference": true,
+    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Racetrack_Phone_Case_Green.png?v=1792612487&width=1200",
+    "reference": false,
     "description": "Colour option selected; image to confirm"
   },
   {
     "id": "14",
     "name": "Burgundy Leopard",
     "category": "leopard",
-    "image": "https://nolovesociety.co.uk/cdn/shop/files/Burgundy_Leopard_Phone_Case_Approved_Studio_45849d77-a364-4381-9ec8-9b96e0d882cb.png?v=1792718738&width=900",
+    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Burgundy_Leopard_Phone_Case_Approved_Studio_45849d77-a364-4381-9ec8-9b96e0d882cb.png?v=1792718738&width=1200",
     "reference": false,
     "description": "Leopard artwork on burgundy"
   },
@@ -115,24 +115,24 @@
     "id": "15",
     "name": "Black Leopard",
     "category": "leopard",
-    "image": "https://nolovesociety.co.uk/cdn/shop/files/Burgundy_Leopard_Phone_Case_Approved_Studio_45849d77-a364-4381-9ec8-9b96e0d882cb.png?v=1792718738&width=900",
-    "reference": true,
+    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Black_Leopard_Phone_Case.png?v=1792578498&width=1200",
+    "reference": false,
     "description": "Selected design — image to confirm"
   },
   {
     "id": "16",
     "name": "Blush Leopard Duo",
     "category": "leopard",
-    "image": "https://nolovesociety.co.uk/cdn/shop/files/Burgundy_Leopard_Phone_Case_Approved_Studio_45849d77-a364-4381-9ec8-9b96e0d882cb.png?v=1792718738&width=900",
-    "reference": true,
+    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Blush_Leopard_Duo_Phone_Case.jpg?v=1793311728&width=1200",
+    "reference": false,
     "description": "Selected design — image to confirm"
   },
   {
     "id": "17",
     "name": "Khaki Green Leopard",
     "category": "leopard",
-    "image": "https://nolovesociety.co.uk/cdn/shop/files/Burgundy_Leopard_Phone_Case_Approved_Studio_45849d77-a364-4381-9ec8-9b96e0d882cb.png?v=1792718738&width=900",
-    "reference": true,
+    "image": "https://cdn.shopify.com/s/files/1/1010/5916/6582/files/Khaki_Green_Leopard_Phone_Case.png?v=1792605526&width=1200",
+    "reference": false,
     "description": "Selected design — image to confirm"
   }
 ]
