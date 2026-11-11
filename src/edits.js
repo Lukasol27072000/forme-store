@@ -12,8 +12,8 @@ export function setupPhoneEdits(allProducts,openProduct){
   section.querySelectorAll('[data-edit-finish]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.editFinish===finish)));
   if(!bundle){board.innerHTML='<p class="empty">Эта подборка сейчас обновляется. Другие дизайны доступны в каталоге.</p>';summary.innerHTML='';return;}
   const items=bundle.bundle_product_ids.map(id=>available.get(id));
-  const centerIndex=finishIndexes[finish],width=1774/3;
-  const phone=`https://forme-store-luka-sol.vercel.app/catalog/iphone-finishes.webp#view=${centerIndex*width},0,${width},887,1774,887`;
+  const centerIndex=finishIndexes[finish],width=615,center=[343,891,1437][centerIndex];
+  const phone=`https://forme-store-luka-sol.vercel.app/catalog/iphone-finishes.webp#view=${center-width/2},24,${width},820,1774,887`;
   const cells=items.map((product,index)=>{
    const image=product.images.find(url=>finishOf(url)===finish)||product.images[0];
    return `<button class="edit-case" style="grid-area:${Math.floor(slots[index]/3)+1}/${slots[index]%3+1}" type="button" data-edit-product="${escape(product.id)}" aria-label="Выбрать ${escape(product.name)} — ${escape(money(product.price))}"><span class="edit-case-photo">${photoMarkup(image,product.name+' на '+phoneFinishes[finish])}</span><span class="edit-case-name">${escape(product.name)}</span><span class="edit-case-price">${money(product.price)} <span aria-hidden="true">↗</span></span></button>`;
