@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {normalizeContact,contactHref} from '../src/contacts.js';
+assert.equal(normalizeContact('telegram','https://t.me/forme_case/'),'@forme_case');
+assert.equal(normalizeContact('telegram','@forme_case'),'@forme_case');
+assert.equal(normalizeContact('phone','8 (999) 123-45-67'),'+79991234567');
+assert.equal(normalizeContact('phone','+44 7700 900123'),'+447700900123');
+for(const input of ['a','@bad name','javascript:alert(1)','<script>'])assert.throws(()=>normalizeContact('telegram',input));
+for(const input of ['','123','+0000000','+7999<script>'])assert.throws(()=>normalizeContact('phone',input));
+assert.equal(contactHref('telegram','<img src=x onerror=alert(1)>'),'');
+assert.equal(contactHref('telegram','forme_case'),'https://t.me/forme_case');
+assert.equal(contactHref('phone','8 (999) 123-45-67'),'tel:+79991234567');
+console.log('Contact normalization and safe links passed.');

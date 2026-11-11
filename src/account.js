@@ -1,8 +1,11 @@
+import {normalizeContact,contactFields} from './contacts.js';
 import {photoMarkup,phoneFinishes,finishOf} from './catalog.js';
 import {db,currentUser,isAdmin,assertResult,escape,money,when,statuses,safeImage,errorMessage} from './client.js';
 import {insertOnce,setupSupport} from './support.js';
 let mode='login',user=null,selected=null,orderId=null;
-let checkoutBundle=[];
+let checkoutBundle=[],profile=null;
+const profileForm=document.getElementById('profileForm');
+contactFields(profileForm);contactFields(document.getElementById('authForm'));
 const authPanel=document.getElementById('authPanel');
 const authForm=document.getElementById('authForm');
 const authStatus=document.getElementById('authStatus');
@@ -10,7 +13,7 @@ const params=new URLSearchParams(location.search);
 const productId=params.get('product')||sessionStorage.getItem('forme-product');
 if(params.get('product'))sessionStorage.setItem('forme-product',params.get('product'));
 document.querySelectorAll('[data-auth]').forEach(button=>button.onclick=()=>{
- mode=button.dataset.auth;document.querySelectorAll('[data-auth]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+ mode=button.dataset.auth;document.getElementById('signupContact').hidden=mode!=='signup';document.getElementById('signupContact').disabled=mode!=='signup';document.querySelectorAll('[data-auth]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
  document.getElementById('authTitle').textContent=mode==='signup'?'Твой аккаунт FORMÉ.':'С возвращением.';
  document.getElementById('authSubmit').textContent=mode==='signup'?'Создать аккаунт →':'Войти →';
  document.getElementById('password').autocomplete=mode==='signup'?'new-password':'current-password';authStatus.textContent='';
@@ -24,11 +27,12 @@ authForm.addEventListener('submit',async event=>{
    if(!settingsResponse.ok)throw Error('Auth settings unavailable');
    const settings=await settingsResponse.json();
    if(!settings.mailer_autoconfirm){authStatus.textContent='Регистрация пока готовится. Помощь — @luka_sol.';return;}
-   const result=assertResult(await db.auth.signUp({email,password}));
+   const contact_kind=data.get('contact_kind'),contact=normalizeContact(contact_kind,data.get('contact'));
+   const result=assertResult(await db.auth.signUp({email,password,options:{data:{full_name:data.get('full_name').trim(),contact_kind,contact}}}));
    if(!result.session){assertResult(await db.auth.signInWithPassword({email,password}));}
   }else assertResult(await db.auth.signInWithPassword({email,password}));
   user=await currentUser();await showMember();
- }catch(e){authStatus.textContent=errorMessage(e);}finally{button.disabled=false;}
+ }catch(e){authStatus.textContent=/^Укажи/.test(e.message)?e.message:errorMessage(e);}finally{button.disabled=false;}
 });
 document.getElementById('logout').onclick=async()=>{const {error}=await db.auth.signOut();if(!error)location.replace('/account.html');};
 async function loadOrders(){
@@ -43,7 +47,7 @@ document.getElementById('orders').addEventListener('click',event=>{
 });
 document.getElementById('refreshOrders').onclick=()=>loadOrders().catch(e=>{document.getElementById('ordersStatus').textContent=errorMessage(e);});
 async function loadCheckout(){
- if(!productId)return;
+ if(!productId||!profile?.contact)return;
  selected=assertResult(await db.from('store_products').select('*').eq('id',productId).eq('active',true).maybeSingle());
  if(!selected){document.getElementById('ordersStatus').textContent='Этот чехол сейчас недоступен. Выбери другой в каталоге.';return;}
  document.getElementById('checkout').hidden=false;
@@ -58,13 +62,16 @@ async function loadCheckout(){
   }
   document.getElementById('checkoutProduct').insertAdjacentHTML('beforeend',`<p class="muted">В наборе 8 чехлов для одной модели телефона. Телефон в комплект не входит.</p><div class="checkout-bundle-grid">${checkoutBundle.map(item=>`<figure>${photoMarkup(item.images.find(image=>finishOf(image)===finish)||item.images[0],item.name)}<figcaption>${escape(item.name)} · 1 шт.</figcaption></figure>`).join('')}</div>`);
  }
+ const checkoutForm=document.getElementById('checkoutForm');
+ if(!checkoutForm.elements.customer_name.value)checkoutForm.elements.customer_name.value=profile.full_name;
+ if(!checkoutForm.elements.contact.value)checkoutForm.elements.contact.value=profile.contact;
  const model=document.querySelector('#checkoutForm [name=phone_model]');
  if(selected.compatible_models.length){const select=document.createElement('select');select.name='phone_model';select.required=true;select.innerHTML='<option value="">Выбери модель</option>'+selected.compatible_models.map(m=>`<option>${escape(m)}</option>`).join('');model.replaceWith(select);}
  orderId=sessionStorage.getItem('forme-order-'+selected.id)||crypto.randomUUID();sessionStorage.setItem('forme-order-'+selected.id,orderId);
 }
 document.getElementById('cancelCheckout').onclick=()=>{sessionStorage.removeItem('forme-product');document.getElementById('checkout').hidden=true;history.replaceState({},'','/account.html');};
 document.getElementById('checkoutForm').addEventListener('submit',async event=>{
- event.preventDefault();if(!selected)return;
+ event.preventDefault();if(!selected||!profile?.contact){document.getElementById('profileSection').scrollIntoView({behavior:'smooth'});return;}
  const form=event.currentTarget,button=form.querySelector('button[type=submit]'),status=document.getElementById('checkoutStatus');button.disabled=true;status.textContent='Оформляем заказ…';
  try{
   const data=new FormData(form);const row={id:orderId,user_id:user.id,product_id:selected.id,unit_price:selected.price,consent:data.get('consent')==='on',phone_finish:selected.kind==='bundle'?selected.bundle_finish:(phoneFinishes[params.get('finish')]?params.get('finish'):'')};
@@ -76,12 +83,31 @@ document.getElementById('checkoutForm').addEventListener('submit',async event=>{
   history.replaceState({},'','/account.html');document.getElementById('ordersStatus').textContent='Заказ получен. Подтвердим наличие и доставку в переписке.';await loadOrders();
  }catch(e){status.textContent=errorMessage(e);}finally{button.disabled=false;}
 });
+async function loadProfile(){
+ profile=assertResult(await db.from('store_profiles').select('*').eq('user_id',user.id).maybeSingle());
+ if(!profile){
+  const data=user.user_metadata||{};
+  if(data.contact&&data.contact_kind){profile=assertResult(await db.from('store_profiles').upsert({user_id:user.id,full_name:data.full_name||'',contact_kind:data.contact_kind,contact:normalizeContact(data.contact_kind,data.contact)}).select().single());}
+ }
+ for(const key of ['full_name','contact_kind','contact'])profileForm.elements[key].value=profile?.[key]||(key==='contact_kind'?'telegram':'');
+ profileForm.elements.contact_kind.dispatchEvent(new Event('change'));
+ document.getElementById('profileRequired').hidden=Boolean(profile?.contact);
+}
+profileForm.addEventListener('submit',async event=>{
+ event.preventDefault();const button=profileForm.querySelector('button[type=submit]'),status=document.getElementById('profileStatus');button.disabled=true;
+ try{
+  const data=new FormData(profileForm),contact_kind=data.get('contact_kind'),contact=normalizeContact(contact_kind,data.get('contact'));
+  profile=assertResult(await db.from('store_profiles').upsert({user_id:user.id,full_name:data.get('full_name').trim(),contact_kind,contact}).select().single());
+  profileForm.elements.contact.value=profile.contact;document.getElementById('profileRequired').hidden=true;status.textContent='Контакт сохранён. Мы сможем связаться по заказу.';
+  if(productId&&document.getElementById('checkout').hidden)await loadCheckout();
+ }catch(e){status.textContent=/^Укажи/.test(e.message)?e.message:errorMessage(e);}finally{button.disabled=false;}
+});
 let supportReady=false;
 async function showMember(){
  if(!user)return;
  authPanel.hidden=true;document.getElementById('memberPanel').hidden=false;document.getElementById('logout').hidden=false;document.getElementById('memberEmail').textContent=user.email;
  document.getElementById('adminLink').hidden=!(await isAdmin());
- await loadOrders();await loadCheckout();
+ await loadProfile();await loadOrders();await loadCheckout();
  if(!supportReady){await setupSupport(user);supportReady=true;}
 }
-try{user=await currentUser();if(user)await showMember();}catch(e){authStatus.textContent=errorMessage(e);document.getElementById('ordersStatus').textContent=errorMessage(e);}
+try{user=await currentUser();if(user)await showMember();}catch(e){authStatus.textContent=/^Укажи/.test(e.message)?e.message:errorMessage(e);document.getElementById('ordersStatus').textContent=errorMessage(e);}

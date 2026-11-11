@@ -1,3 +1,4 @@
+import {setupCustomers} from './customers.js';
 import {photoMarkup,phoneFinishes,finishOf} from './catalog.js';
 import {db,currentUser,isAdmin,assertResult,escape,money,when,statuses,categories,safeImage,errorMessage} from './client.js';
 import {setupSupport} from './support.js';
@@ -68,5 +69,5 @@ try{
  const user=await currentUser();
  if(!user){access.innerHTML='Войди в свой аккаунт для управления магазином. <a href="/account.html">Войти →</a>';}
  else if(!(await isAdmin()))access.textContent='У этого аккаунта нет прав администратора. Обратись к владельцу магазина.';
- else{access.hidden=true;document.getElementById('adminPanel').hidden=false;document.getElementById('adminLink').hidden=false;document.getElementById('logout').hidden=false;await Promise.all([loadOrders(),loadProducts(),setupSupport(user,true)]);}
+ else{access.hidden=true;document.getElementById('adminPanel').hidden=false;document.getElementById('adminLink').hidden=false;document.getElementById('logout').hidden=false;await Promise.all([loadOrders(),loadProducts(),setupSupport(user,true),setupCustomers()]);}
 }catch(e){access.textContent=errorMessage(e);}
