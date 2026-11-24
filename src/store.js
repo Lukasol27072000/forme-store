@@ -1,7 +1,9 @@
+import {setupChat} from './chat.js';
 import {setupPhoneEdits} from './edits.js';
 import {db,assertResult,escape,money,categories,currentUser} from './client.js';
 import {collections,phoneFinishes,photoMarkup,finishOf} from './catalog.js';
 const grid=document.getElementById('productGrid'),dialog=document.getElementById('productDialog');
+let chat=null;
 let products=[],selected=null,opener=null,photoIndex=0,activeCollection='all';
 function showPhoto(index){
  photoIndex=index;
@@ -21,6 +23,7 @@ function openProduct(product,button,finish='silver'){
  document.getElementById('productPrice').textContent=money(product.price);
  const models=product.compatible_models;document.getElementById('productModels').textContent=models.length?'Для '+models.join(', '):'Выбери модель iPhone при оформлении. Наличие для твоей модели подтвердим до оплаты.';
  document.getElementById('productGallery').innerHTML=product.images.map((image,index)=>`<button type="button" data-photo="${index}" aria-pressed="${index===0}" aria-label="${escape(phoneFinishes[finishOf(image)]||'Фото '+(index+1))}">${photoMarkup(image,phoneFinishes[finishOf(image)]||'Фото '+(index+1))}<span>${escape(phoneFinishes[finishOf(image)]||'Фото '+(index+1))}</span></button>`).join('');
+ document.getElementById('askProduct').onclick=()=>{dialog.close();chat?.open(product);};
  showPhoto(Math.max(0,product.images.findIndex(image=>finishOf(image)===finish)));dialog.showModal();document.body.style.overflow='hidden';
 }
 document.getElementById('productGallery').onclick=event=>{const button=event.target.closest('[data-photo]');if(button&&selected)showPhoto(Number(button.dataset.photo));};
@@ -49,9 +52,10 @@ function renderCollections(){
 }
 try{
  const allProducts=assertResult(await db.from('store_products').select('*').eq('active',true).order('created_at').limit(500));
+ chat=setupChat(allProducts);
  products=allProducts.filter(p=>p.kind!=='bundle');
  setupPhoneEdits(allProducts,openProduct);
  products.sort((a,b)=>Number(a.legacy_id||999)-Number(b.legacy_id||999));
  render();renderCollections();
-}catch{grid.innerHTML='<p>Каталог временно не загрузился. Обнови страницу или <a href="https://t.me/luka_sol">напиши нам</a>.</p>';}
+}catch{chat??=setupChat([]);grid.innerHTML='<p>Каталог временно не загрузился. Обнови страницу или <a href="https://t.me/luka_sol">напиши нам</a>.</p>';}
 const user=await currentUser();if(user)document.getElementById('accountLink').textContent='Мой кабинет →';
