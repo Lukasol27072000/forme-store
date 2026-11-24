@@ -1,8 +1,12 @@
+import {faqs} from './faq-data.js';
+import './faq.css';
 import {setupChat} from './chat.js';
 import {setupPhoneEdits} from './edits.js';
 import {db,assertResult,escape,money,categories,currentUser} from './client.js';
 import {collections,phoneFinishes,photoMarkup,finishOf} from './catalog.js';
 const grid=document.getElementById('productGrid'),dialog=document.getElementById('productDialog');
+const homeFaq=document.querySelector('.faq');
+if(homeFaq)homeFaq.innerHTML='<div class="home-faq-heading"><h3>Вопросы и ответы</h3><a href="/faq.html">Все ответы ↗</a></div>'+['delivery-cost','delivery-time','payment','returns'].map(id=>{const f=faqs.find(x=>x.id===id);return `<details><summary>${escape(f.question)}</summary><p>${escape(f.answer)}</p></details>`;}).join('');
 let chat=null;
 let products=[],selected=null,opener=null,photoIndex=0,activeCollection='all';
 function showPhoto(index){
