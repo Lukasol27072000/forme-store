@@ -11,5 +11,5 @@ export async function setupGuestAdmin(){
  list.onclick=async e=>{const button=e.target.closest('[data-guest-chat]');if(!button)return;selected=chats.find(c=>c.id===button.dataset.guestChat);replyId=null;show();try{await loadMessages();}catch(err){notice.textContent=errorMessage(err);}};
  async function refresh(){if(loading)return;loading=true;try{await loadList();if(selected)await loadMessages();notice.textContent='';}catch(err){notice.textContent=errorMessage(err);}finally{loading=false;}}
  document.getElementById('refreshGuestChats').onclick=refresh;
- const timer=setInterval(()=>{if(!document.hidden)refresh();},12000);window.addEventListener('pagehide',()=>clearInterval(timer),{once:true});await refresh();
+ let pollTick=0;const timer=setInterval(()=>{pollTick++;if(!document.hidden&&(selected||pollTick%4===0))refresh();},3000);window.addEventListener('pagehide',()=>clearInterval(timer),{once:true});await refresh();
 }
