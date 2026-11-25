@@ -30,11 +30,12 @@ function openProduct(product,button,finish='silver'){
  document.getElementById('buyPrice').textContent=money(product.price);
  const models=product.compatible_models;document.getElementById('productModels').textContent=models.length?'Для '+models.join(', '):'Выбери модель iPhone при оформлении. Наличие для твоей модели подтвердим до оплаты.';
  document.getElementById('productGallery').innerHTML=product.images.map((image,index)=>`<button type="button" data-photo="${index}" aria-pressed="${index===0}" aria-label="${escape(phoneFinishes[finishOf(image)]||'Фото '+(index+1))}">${photoMarkup(image,phoneFinishes[finishOf(image)]||'Фото '+(index+1))}<span>${escape(phoneFinishes[finishOf(image)]||'Фото '+(index+1))}</span></button>`).join('');
- document.getElementById('askProduct').onclick=()=>{dialog.close();chat?.open(product);};
+
  showPhoto(Math.max(0,product.images.findIndex(image=>finishOf(image)===finish)));dialog.showModal();document.body.style.overflow='hidden';
 }
-document.getElementById('productGallery').onclick=event=>{const button=event.target.closest('[data-photo]');if(button&&selected)showPhoto(Number(button.dataset.photo));};
-document.getElementById('closeDialog').onclick=()=>dialog.close();
+document.getElementById('productGallery').addEventListener('click',event=>{const button=event.target.closest('[data-photo]');if(button&&selected)showPhoto(Number(button.dataset.photo));});
+document.getElementById('closeDialog').addEventListener('click',()=>dialog.close());
+document.getElementById('askProduct').addEventListener('click',()=>{if(!selected)return;const p=selected;dialog.close();chat?.open(p);});
 dialog.addEventListener('close',()=>{document.body.style.overflow='';opener?.focus();});
 dialog.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close();}});
 function render(category='all'){
@@ -49,18 +50,18 @@ function render(category='all'){
  document.querySelectorAll('[data-filter]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.filter===category)));
 }
 function selectCollection(category,scroll=false){render(category);if(scroll)document.getElementById('shop').scrollIntoView({behavior:'smooth'});}
-grid.onclick=event=>{const button=event.target.closest('[data-product]');if(button)openProduct(products.find(p=>p.id===button.dataset.product),button);};
-document.querySelectorAll('[data-filter]').forEach(button=>button.onclick=()=>selectCollection(button.dataset.filter));
+grid.addEventListener('click',event=>{const button=event.target.closest('[data-product]');if(button)openProduct(products.find(p=>p.id===button.dataset.product),button);});
+document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>selectCollection(button.dataset.filter)));
 function renderCollections(){
  document.getElementById('collectionCards').innerHTML=Object.entries(collections).map(([key,c])=>{
   const product=products.find(p=>p.category===key);
   return `<article class="collection-card"><button type="button" data-collection="${key}" aria-label="Открыть коллекцию ${escape(c.name)}"><div class="collection-card-photo">${product?photoMarkup(product.images[0],c.name):''}</div><div class="collection-card-heading"><h3>${c.name}</h3><span aria-hidden="true">↗</span></div></button><p>${escape(c.description)}</p></article>`;
  }).join('');
- document.getElementById('collectionCards').onclick=event=>{const button=event.target.closest('[data-collection]');if(button)selectCollection(button.dataset.collection,true);};
+ document.getElementById('collectionCards').addEventListener('click',event=>{const button=event.target.closest('[data-collection]');if(button)selectCollection(button.dataset.collection,true);});
 }
 const menu=document.getElementById('menuDialog');
- document.getElementById('openMenu').onclick=()=>{menu.showModal();document.body.style.overflow='hidden';};
- document.getElementById('closeMenu').onclick=()=>menu.close();
+ document.getElementById('openMenu').addEventListener('click',()=>{menu.showModal();document.body.style.overflow='hidden';});
+ document.getElementById('closeMenu').addEventListener('click',()=>menu.close());
  menu.addEventListener('close',()=>{document.body.style.overflow='';});
  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.close()));
  document.getElementById('catalogSearch').addEventListener('input',()=>render(activeCollection));
@@ -79,8 +80,8 @@ const menu=document.getElementById('menuDialog');
   function update(){active=Math.min(chosen.length-1,Math.max(0,Math.round(rail.scrollLeft/rail.clientWidth)));const p=chosen[active];document.getElementById('heroCollection').textContent='THE '+(categories[p.category]||p.category).toUpperCase()+' EDIT';document.getElementById('heroName').textContent=p.name;document.getElementById('heroPrice').textContent=money(p.price);document.getElementById('heroPage').textContent=String(active+1).padStart(2,'0')+' / '+String(chosen.length).padStart(2,'0');}
   rail.addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(()=>{update();scheduled=false;});}},{passive:true});
   const move=step=>rail.scrollTo({left:((active+step+chosen.length)%chosen.length)*rail.clientWidth,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
-  document.getElementById('heroPrev').onclick=()=>move(-1);document.getElementById('heroNext').onclick=()=>move(1);
-  const choose=document.getElementById('heroChoose');choose.disabled=false;choose.onclick=()=>openProduct(chosen[active],choose);update();
+  document.getElementById('heroPrev').addEventListener('click',()=>move(-1));document.getElementById('heroNext').addEventListener('click',()=>move(1));
+  const choose=document.getElementById('heroChoose');choose.disabled=false;choose.addEventListener('click',()=>openProduct(chosen[active],choose));update();
  }
 try{
  const allProducts=assertResult(await db.from('store_products').select('*').eq('active',true).order('created_at').limit(500));

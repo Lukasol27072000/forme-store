@@ -22,7 +22,7 @@ export function setupPhoneEdits(allProducts,openProduct){
   const individual=items.reduce((sum,p)=>sum+p.price,0);
   summary.innerHTML=`<p class="eyebrow">THE PHONE WARDROBE / 8 CASES</p><h3>${escape(bundle.name.replace(' — 8 чехлов',''))}</h3><p>${escape(bundle.description)}</p><p class="edit-instruction">Нажми на любой чехол, чтобы заказать его отдельно. Или забери всю подборку.</p><div class="edit-total">${individual>bundle.price?`<del>${money(individual)}</del>`:''}<strong>${money(bundle.price)}</strong><span>за все 8 чехлов · доставка отдельно</span></div><a class="button full" href="/account.html?product=${encodeURIComponent(bundle.id)}&finish=${encodeURIComponent(finish)}">Заказать все 8 <span>→</span></a><p class="edit-disclaimer">Восемь чехлов для одной выбранной модели. Телефон в комплект не входит. Наличие и совместимость согласуем до оплаты.</p><details class="edit-contents"><summary>Что входит в набор</summary><ol>${items.map(p=>`<li>${escape(p.name)} <span>1 шт.</span></li>`).join('')}</ol></details>`;
  }
- board.onclick=event=>{const button=event.target.closest('[data-edit-product]');if(button)openProduct(available.get(button.dataset.editProduct),button,finish);};
- section.querySelectorAll('[data-edit-finish]').forEach(button=>button.onclick=()=>{finish=button.dataset.editFinish;render();});
+ board.addEventListener('click',event=>{const button=event.target.closest('[data-edit-product]');if(button)openProduct(available.get(button.dataset.editProduct),button,finish);});
+ section.querySelectorAll('[data-edit-finish]').forEach(button=>button.addEventListener('click',()=>{finish=button.dataset.editFinish;render();}));
  render();
 }
