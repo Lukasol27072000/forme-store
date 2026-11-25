@@ -46,7 +46,7 @@ function render(category='all'){
  const collection=collections[category];
  document.getElementById('collectionTitle').textContent=collection?.tagline||'Один телефон. Разные настроения.';
  document.getElementById('collectionDescription').textContent=collection?.description||'Семь коллекций, чтобы выбрать свою деталь. Примерь дизайн к цвету iPhone в карточке и найди сочетание под сегодняшний образ.';
- grid.innerHTML=filtered.map(p=>`<article class="product-card"><button class="product-image" type="button" data-product="${escape(p.id)}" aria-label="Открыть ${escape(p.name)}">${photoMarkup(p.images[0],p.name)}<span class="view" aria-hidden="true">→</span></button><p class="product-category">${escape(categories[p.category]||p.category)}</p><h3><button data-product="${escape(p.id)}">${escape(p.name)}</button></h3><div class="price-row"><span>${money(p.price)}</span><button data-product="${escape(p.id)}">Выбрать →</button></div><p class="card-finishes">${p.images.some(image=>finishOf(image))?'Примерить к цвету iPhone ↗':''}</p></article>`).join('')||'<p class="empty">Ничего не нашли. Попробуй другое название или коллекцию.</p>';
+ grid.innerHTML=filtered.map(p=>`<article class="product-card"><button class="product-image" type="button" data-product="${escape(p.id)}" aria-label="Открыть ${escape(p.name)}">${photoMarkup(p.images[0],p.name)}</button><p class="product-category">${escape(categories[p.category]||p.category)}</p><h3><button data-product="${escape(p.id)}">${escape(p.name)}</button></h3><div class="price-row"><span>${money(p.price)}</span><button data-product="${escape(p.id)}">Смотреть</button></div><p class="card-finishes">${p.images.some(image=>finishOf(image))?'Три цвета iPhone':''}</p></article>`).join('')||'<p class="empty">Ничего не нашли. Попробуй другое название или коллекцию.</p>';
  document.querySelectorAll('[data-filter]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.filter===category)));
 }
 function selectCollection(category,scroll=false){render(category);if(scroll)document.getElementById('shop').scrollIntoView({behavior:'smooth'});}
@@ -55,7 +55,7 @@ document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListen
 function renderCollections(){
  document.getElementById('collectionCards').innerHTML=Object.entries(collections).map(([key,c])=>{
   const product=products.find(p=>p.category===key);
-  return `<article class="collection-card"><button type="button" data-collection="${key}" aria-label="Открыть коллекцию ${escape(c.name)}"><div class="collection-card-photo">${product?photoMarkup(product.images[0],c.name):''}</div><div class="collection-card-heading"><h3>${c.name}</h3><span aria-hidden="true">↗</span></div></button><p>${escape(c.description)}</p></article>`;
+  return `<article class="collection-card"><button type="button" data-collection="${key}" aria-label="Открыть коллекцию ${escape(c.name)}"><div class="collection-card-photo">${product?photoMarkup(product.images[0],c.name):''}</div><div class="collection-card-heading"><h3>${c.name}</h3></div></button><p>${escape(c.description)}</p></article>`;
  }).join('');
  document.getElementById('collectionCards').addEventListener('click',event=>{const button=event.target.closest('[data-collection]');if(button)selectCollection(button.dataset.collection,true);});
 }
@@ -72,17 +72,13 @@ const menu=document.getElementById('menuDialog');
  photo.addEventListener('pointercancel',()=>{touchStart=null;});
  dialog.addEventListener('keydown',e=>{if(!selected||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();showPhoto((photoIndex+(e.key==='ArrowRight'?1:-1)+selected.images.length)%selected.images.length);}});
  function setupHero(){
-  const chosen=['azul','racetrack','ocean','leopard'].map(category=>products.find(p=>p.category===category)).filter(Boolean);
-  if(!chosen.length)return;
-  const rail=document.getElementById('heroRail');let active=0,scheduled=false;
-  rail.innerHTML=chosen.map((p,i)=>`<div class="hero-slide"><div class="hero-photo">${photoMarkup(p.images[0],p.name)}</div></div>`).join('');
-  const first=rail.querySelector('img');if(first){first.loading='eager';first.setAttribute('fetchpriority','high');}
-  function update(){active=Math.min(chosen.length-1,Math.max(0,Math.round(rail.scrollLeft/rail.clientWidth)));const p=chosen[active];document.getElementById('heroCollection').textContent='THE '+(categories[p.category]||p.category).toUpperCase()+' EDIT';document.getElementById('heroName').textContent=p.name;document.getElementById('heroPrice').textContent=money(p.price);document.getElementById('heroPage').textContent=String(active+1).padStart(2,'0')+' / '+String(chosen.length).padStart(2,'0');}
-  rail.addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(()=>{update();scheduled=false;});}},{passive:true});
-  const move=step=>rail.scrollTo({left:((active+step+chosen.length)%chosen.length)*rail.clientWidth,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
-  document.getElementById('heroPrev').addEventListener('click',()=>move(-1));document.getElementById('heroNext').addEventListener('click',()=>move(1));
-  const choose=document.getElementById('heroChoose');choose.disabled=false;choose.addEventListener('click',()=>openProduct(chosen[active],choose));update();
+  const product=products.find(p=>p.category==='azul')||products[0];
+  const button=document.getElementById('heroChoose');
+  if(!product)return;
+  document.getElementById('heroPrice').textContent=money(product.price);
+  button.disabled=false;button.addEventListener('click',()=>openProduct(product,button));
  }
+
 try{
  const allProducts=assertResult(await db.from('store_products').select('*').eq('active',true).order('created_at').limit(500));
  chat=setupChat(allProducts);
