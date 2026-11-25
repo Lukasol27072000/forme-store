@@ -29,7 +29,7 @@ function editProduct(product=null){
  productForm.reset();productForm.hidden=false;
  productForm.elements.category.querySelector('[value=edits]').disabled=product?.kind!=='bundle';
  for(const key of ['id','name','category','description'])productForm.elements[key].value=product?.[key]??(key==='category'?'azul':'');
- productForm.elements.price.value=product?product.price/100:1290;
+ productForm.elements.price.value=product?product.price/100:1490;
  productForm.elements.compatible_models.value=product?.compatible_models.join('\n')||'';
  productForm.elements.active.checked=product?.active??true;productForm.elements.reference_image.checked=product?.reference_image??false;
  images=[...(product?.images||[])];showImages();document.getElementById('productStatus').textContent='';document.getElementById('productFormTitle').textContent=product?'Редактировать чехол':'Новый чехол';productForm.scrollIntoView({behavior:'smooth'});

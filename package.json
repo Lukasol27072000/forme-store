@@ -4,14 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vite build",
-    "dev": "vite --host 0.0.0.0",
+    "build": "node scripts/prepare-photos.mjs && vite build",
+    "dev": "node scripts/prepare-photos.mjs && vite --host 0.0.0.0",
     "preview": "vite preview --host 0.0.0.0"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.119.0"
   },
   "devDependencies": {
+    "sharp": "0.34.5",
     "vite": "8.3.7"
   }
 }

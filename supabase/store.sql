@@ -18,7 +18,7 @@ create table public.store_products (
  name text not null check(char_length(name) between 1 and 120),
  category text not null check(category in ('azul','evil-eye','ocean','racetrack','leopard')),
  description text not null default '' check(char_length(description) <= 5000),
- price integer not null default 129000 check(price between 100 and 100000000),
+ price integer not null default 149000 check(price between 100 and 100000000),
  images text[] not null default '{}',
  compatible_models text[] not null default '{}',
  reference_image boolean not null default false,

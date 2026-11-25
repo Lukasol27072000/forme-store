@@ -1,3 +1,4 @@
+import photoManifest from './photo-manifest.json';
 export const collections = {
  azul:{name:'AZUL',tagline:'Керамика. Цвет. Характер.',description:'Молочная основа, тонкий орнамент и насыщенный цвет. Керамические мотивы AZUL напоминают о вещах, которые выбирают надолго: за форму, детали и настроение.'},
  'evil-eye':{name:'EVIL EYE',tagline:'Деталь, которая ловит взгляды.',description:'От лаконичного символа до свободной абстракции. Синие оттенки, графичные глаза и мягкие круги — маленькие личные талисманы для совершенно разных образов.'},
@@ -19,6 +20,8 @@ export function photoMarkup(value,alt='',className='') {
  const crop=(params.get('view')||'').split(',').map(Number);
  const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const source=url.href.split('#')[0];
+ const optimized=photoManifest[url.pathname+'#'+params.get('view')];
+ if(optimized)return `<img class="catalog-photo ${escape(className)}" src="${optimized}" alt="${escape(alt)}" width="420" height="560" loading="lazy" decoding="async">`;
  if(crop.length!==6 || crop.some(v=>!Number.isFinite(v)) || crop.slice(2).some(v=>v<=0))return `<img class="catalog-photo ${escape(className)}" src="${escape(source)}" alt="${escape(alt)}" loading="lazy">`;
  const [x,y,w,h,bw,bh]=crop,id=`catalog-clip-${++imageSequence}`;
  return `<svg class="catalog-photo ${escape(className)}" viewBox="${x} ${y} ${w} ${h}" role="img" aria-label="${escape(alt)}" preserveAspectRatio="xMidYMid meet"><defs><clipPath id="${id}"><rect x="${x}" y="${y}" width="${w}" height="${h}"/></clipPath></defs><image href="${escape(source)}" x="0" y="0" width="${bw}" height="${bh}" clip-path="url(#${id})"/></svg>`;

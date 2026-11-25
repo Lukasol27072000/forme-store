@@ -4,3 +4,5 @@ node_modules/
 dist/
 .env*
 !.env.example
+public/catalog/photos/
+src/photo-manifest.json
